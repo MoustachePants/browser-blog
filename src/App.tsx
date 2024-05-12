@@ -1,4 +1,4 @@
-// import "./App.css";
+import "./App.css";
 
 import EditorContainer from "./components/EditorContainer";
 import WebPreview from "./components/WebPreview";
@@ -13,14 +13,17 @@ function App() {
     </head>
     <body>
         <h1>This is a Heading</h1>
-        <p>This is a paragraph.</p>
+        <p class="red-background">This is a paragraph.</p>
     </body>
 </html>`;
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
 
   return (
     <div className="App">
-      <EditorContainer code={htmlCode} setCode={setHtmlCode} />
+      <div className="flex-placeholder">
+        <EditorContainer code={htmlCode} setCode={setHtmlCode} title={"HTML"} />
+        <EditorContainer code={htmlCode} setCode={setHtmlCode} title={"CSS"} />
+      </div>
       {/*<WebPreview code={htmlCode} />*/}
       <IframePreview code={htmlCode} />
     </div>
