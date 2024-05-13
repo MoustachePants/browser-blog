@@ -1,4 +1,4 @@
-import "./Editor.css";
+import "./CodeEditor.css";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
@@ -6,9 +6,10 @@ type EditorProps = {
   code: string;
   setCode: Dispatch<SetStateAction<string>>;
   title: string;
+  type: string;
 };
 
-const EditorContainer = ({ code, setCode, title }: EditorProps) => {
+const CodeEditor = ({ code, setCode, title, type }: EditorProps) => {
   const onChangeHandler = (value?: string) => {
     if (!value) return;
     setCode(value);
@@ -19,9 +20,8 @@ const EditorContainer = ({ code, setCode, title }: EditorProps) => {
       <fieldset>
         <legend>{title}</legend>
         <Editor
-          height="50vh"
-          width="45vw"
-          defaultLanguage="html"
+          // height="50vh"
+          defaultLanguage={type}
           defaultValue={code.trim()}
           theme={"vs-dark"}
           options={{
@@ -36,4 +36,4 @@ const EditorContainer = ({ code, setCode, title }: EditorProps) => {
   );
 };
 
-export default EditorContainer;
+export default CodeEditor;

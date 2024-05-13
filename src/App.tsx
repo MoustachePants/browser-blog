@@ -1,9 +1,9 @@
 import "./App.css";
 
-import EditorContainer from "./components/EditorContainer";
-import WebPreview from "./components/WebPreview";
+import CodeEditor from "./components/CodeEditor";
 import { useState } from "react";
-import IframePreview from "./components/iframePreview";
+import IframePreview from "./components/IframePreview";
+import Section from "./components/UI/Section";
 
 function App() {
   const defaultHtml = `
@@ -16,16 +16,34 @@ function App() {
         <p class="red-background">This is a paragraph.</p>
     </body>
 </html>`;
+
+  const defaultCss = `.red-background {
+  background-color: red;
+}
+`;
+
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
+  const [cssCode, setCssCode] = useState<string>(defaultCss);
 
   return (
     <div className="App">
-      <div className="flex-placeholder">
-        <EditorContainer code={htmlCode} setCode={setHtmlCode} title={"HTML"} />
-        <EditorContainer code={htmlCode} setCode={setHtmlCode} title={"CSS"} />
-      </div>
-      {/*<WebPreview code={htmlCode} />*/}
-      <IframePreview code={htmlCode} />
+      <Section>
+        <CodeEditor
+          code={htmlCode}
+          setCode={setHtmlCode}
+          title={"HTML"}
+          type="html"
+        />
+        <CodeEditor
+          code={cssCode}
+          setCode={setCssCode}
+          title={"CSS"}
+          type="css"
+        />
+      </Section>
+      <Section>
+        <IframePreview html={htmlCode} css={cssCode} />
+      </Section>
     </div>
   );
 }
