@@ -1,13 +1,16 @@
 import "./App.css";
 
 import CodeEditor from "./components/CodeEditor";
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import IframePreview from "./components/IframePreview";
 import Section from "./components/UI/Section";
 import Tree from "./components/UI/Tree";
 import getDomTree from "./utils/getDomTree";
-import TreeNode from "./types/TreeNode";
-import renderDomNode from "./utils/renderDomNode";
+import DomTreeNode from "./types/DomTreeNode";
+import DomTreeNodes from "./components/DomTreeNodes";
+import NodeTreeNode from "./types/NodeTreeNode";
+import getNodeTree from "./utils/getNodeTree";
+import NodeTreeNodes from "./components/NodeTreeNodes";
 
 function App() {
   const defaultHtml = `
@@ -17,6 +20,7 @@ function App() {
     </head>
     <body>
         <h1>This is a Heading</h1>
+        <!--  html comment -->
         <p class="red-background">This is a paragraph.</p>
     </body>
 </html>`;
@@ -29,28 +33,40 @@ function App() {
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
   const [cssCode, setCssCode] = useState<string>(defaultCss);
   const [iframeDocument, setIframeDocument] = useState<Document>();
-  const [domNodes, setDomNodes] = useState<TreeNode>();
+  const [domNode, setDomNode] = useState<DomTreeNode>();
+  const [nodeNode, setNodeNode] = useState<NodeTreeNode>();
 
-  useEffect(() => {
-    if (!iframeDocument) return;
-    setDomNodes(getDomTree(iframeDocument.documentElement));
-  }, [iframeDocument, setDomNodes, getDomTree, htmlCode, cssCode]);
   // BUG
   // shouldn't write here html and css code. not best practice.
   // this should trigger because the iframeDocument is changed
+  useEffect(() => {
+    if (!iframeDocument) return;
+    const domNodes = getDomTree(iframeDocument.documentElement);
+    const nodeNodes = getNodeTree(iframeDocument.documentElement);
+    setDomNode(domNodes);
+    setNodeNode(nodeNodes);
+  }, [iframeDocument, setDomNode, getDomTree, htmlCode, cssCode]);
+
+  const changeHtmlHandler = (html: string) => {
+    setHtmlCode(html);
+  };
+
+  const changeCssHandler = (css: string) => {
+    setCssCode(css);
+  };
 
   return (
     <div className="App">
       <Section>
         <CodeEditor
           code={htmlCode}
-          setCode={setHtmlCode}
+          onCodeChange={changeHtmlHandler}
           title={"HTML"}
           type="html"
         />
         <CodeEditor
           code={cssCode}
-          setCode={setCssCode}
+          onCodeChange={changeCssHandler}
           title={"CSS"}
           type="css"
         />
@@ -62,9 +78,14 @@ function App() {
           setDocument={setIframeDocument}
         />
       </Section>
-      {domNodes && (
+      {domNode && (
         <Section>
-          <Tree>{renderDomNode(domNodes)}</Tree>
+          <Tree>{<DomTreeNodes node={domNode} />}</Tree>
+        </Section>
+      )}
+      {nodeNode && (
+        <Section>
+          <Tree>{<NodeTreeNodes node={nodeNode} />}</Tree>
         </Section>
       )}
     </div>

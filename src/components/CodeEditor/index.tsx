@@ -4,15 +4,15 @@ import { Dispatch, SetStateAction, useEffect } from "react";
 
 type EditorProps = {
   code: string;
-  setCode: Dispatch<SetStateAction<string>>;
+  onCodeChange: (code: string) => void;
   title: string;
   type: string;
 };
 
-const CodeEditor = ({ code, setCode, title, type }: EditorProps) => {
+const CodeEditor = ({ code, onCodeChange, title, type }: EditorProps) => {
   const onChangeHandler = (value?: string) => {
     if (!value) return;
-    setCode(value);
+    onCodeChange(value);
   };
 
   return (
