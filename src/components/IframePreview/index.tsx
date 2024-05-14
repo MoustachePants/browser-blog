@@ -4,9 +4,10 @@ import { useEffect, useRef } from "react";
 type IframePreviewProps = {
   html: string;
   css: string;
+  setDocument: (documentObj: Document) => void;
 };
 
-const IframePreview = ({ html, css }: IframePreviewProps) => {
+const IframePreview = ({ html, css, setDocument }: IframePreviewProps) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
@@ -26,6 +27,13 @@ const IframePreview = ({ html, css }: IframePreviewProps) => {
       iframeDocument.head.appendChild(styleElement);
     }
   }, [css, html]);
+
+  useEffect(() => {
+    if (!iframeRef.current) return;
+    const iframeDocument = iframeRef.current.contentDocument!;
+    // console.log(iframeDocument);
+    setDocument(iframeDocument);
+  }, [html, css, iframeRef, setDocument]);
 
   return <iframe ref={iframeRef} className="iframe-preview" />;
 };

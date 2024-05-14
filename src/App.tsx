@@ -28,11 +28,16 @@ function App() {
 
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
   const [cssCode, setCssCode] = useState<string>(defaultCss);
-
+  const [iframeDocument, setIframeDocument] = useState<Document>();
   const [domNodes, setDomNodes] = useState<TreeNode>();
+
   useEffect(() => {
-    setDomNodes(getDomTree(document.documentElement));
-  }, []);
+    if (!iframeDocument) return;
+    setDomNodes(getDomTree(iframeDocument.documentElement));
+  }, [iframeDocument, setDomNodes, getDomTree, htmlCode, cssCode]);
+  // BUG
+  // shouldn't write here html and css code. not best practice.
+  // this should trigger because the iframeDocument is changed
 
   return (
     <div className="App">
@@ -51,12 +56,15 @@ function App() {
         />
       </Section>
       <Section>
-        <IframePreview html={htmlCode} css={cssCode} />
+        <IframePreview
+          html={htmlCode}
+          css={cssCode}
+          setDocument={setIframeDocument}
+        />
       </Section>
       {domNodes && (
         <Section>
           <Tree>{renderDomNode(domNodes)}</Tree>
-          {/*<ul>{renderDomNode(domNodes)}</ul>*/}
         </Section>
       )}
     </div>
