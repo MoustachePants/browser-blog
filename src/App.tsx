@@ -1,9 +1,13 @@
 import "./App.css";
 
 import CodeEditor from "./components/CodeEditor";
-import { useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import IframePreview from "./components/IframePreview";
 import Section from "./components/UI/Section";
+import Tree from "./components/UI/Tree";
+import getDomTree from "./utils/getDomTree";
+import TreeNode from "./types/TreeNode";
+import renderDomNode from "./utils/renderDomNode";
 
 function App() {
   const defaultHtml = `
@@ -25,6 +29,11 @@ function App() {
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
   const [cssCode, setCssCode] = useState<string>(defaultCss);
 
+  const [domNodes, setDomNodes] = useState<TreeNode>();
+  useEffect(() => {
+    setDomNodes(getDomTree(document.documentElement));
+  }, []);
+
   return (
     <div className="App">
       <Section>
@@ -44,6 +53,12 @@ function App() {
       <Section>
         <IframePreview html={htmlCode} css={cssCode} />
       </Section>
+      {domNodes && (
+        <Section>
+          <Tree>{renderDomNode(domNodes)}</Tree>
+          {/*<ul>{renderDomNode(domNodes)}</ul>*/}
+        </Section>
+      )}
     </div>
   );
 }
