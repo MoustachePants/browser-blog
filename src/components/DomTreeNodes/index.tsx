@@ -7,11 +7,11 @@ type DomTreeNodesProps = {
 
 const DomTreeNodes = ({ node }: DomTreeNodesProps): ReactElement => {
   return (
-    <li key={Math.random()}>
-      <a href="#">
+    <li key={Math.random()} title={node.tagName || node.tag}>
+      <div className="node-container">
         <span>{node.tagName || node.tag}</span>
         {(node.children.length === 0 && node.content) || ``}
-      </a>
+      </div>
       {node.children.length > 0 && (
         <ul>
           {node.children.map((child) => (

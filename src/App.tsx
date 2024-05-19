@@ -11,6 +11,7 @@ import DomTreeNodes from "./components/DomTreeNodes";
 import NodeTreeNode from "./types/NodeTreeNode";
 import getNodeTree from "./utils/getNodeTree";
 import NodeTreeNodes from "./components/NodeTreeNodes";
+import StepBar from "./components/StepBar";
 
 function App() {
   const defaultHtml = `
@@ -57,37 +58,38 @@ function App() {
 
   return (
     <div className="App">
-      <Section>
-        <CodeEditor
-          code={htmlCode}
-          onCodeChange={changeHtmlHandler}
-          title={"HTML"}
-          type="html"
-        />
-        <CodeEditor
-          code={cssCode}
-          onCodeChange={changeCssHandler}
-          title={"CSS"}
-          type="css"
-        />
-      </Section>
-      <Section>
-        <IframePreview
-          html={htmlCode}
-          css={cssCode}
-          setDocument={setIframeDocument}
-        />
-      </Section>
-      {domNode && (
-        <Section>
-          <Tree>{<DomTreeNodes node={domNode} />}</Tree>
-        </Section>
-      )}
-      {nodeNode && (
-        <Section>
-          <Tree>{<NodeTreeNodes node={nodeNode} />}</Tree>
-        </Section>
-      )}
+      {/*<Section>*/}
+      {/*  <CodeEditor*/}
+      {/*    code={htmlCode}*/}
+      {/*    onCodeChange={changeHtmlHandler}*/}
+      {/*    title={"HTML"}*/}
+      {/*    type="html"*/}
+      {/*  />*/}
+      {/*  <CodeEditor*/}
+      {/*    code={cssCode}*/}
+      {/*    onCodeChange={changeCssHandler}*/}
+      {/*    title={"CSS"}*/}
+      {/*    type="css"*/}
+      {/*  />*/}
+      {/*</Section>*/}
+      {/*<Section>*/}
+      {/*  <IframePreview*/}
+      {/*    html={htmlCode}*/}
+      {/*    css={cssCode}*/}
+      {/*    setDocument={setIframeDocument}*/}
+      {/*  />*/}
+      {/*</Section>*/}
+      {/*{domNode && (*/}
+      {/*  <Section>*/}
+      {/*    <Tree>{<DomTreeNodes node={domNode} />}</Tree>*/}
+      {/*  </Section>*/}
+      {/*)}*/}
+      {/*{nodeNode && (*/}
+      {/*  <Section>*/}
+      {/*    <Tree>{<NodeTreeNodes node={nodeNode} />}</Tree>*/}
+      {/*  </Section>*/}
+      {/*)}*/}
+      <StepBar />
     </div>
   );
 }

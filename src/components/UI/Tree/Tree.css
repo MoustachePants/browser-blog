@@ -81,7 +81,7 @@
   height: 20px;
 }
 
-.tree li a {
+.tree li .node-container {
   border: 1px solid #ccc;
   padding: 10px;
   display: inline-grid;
@@ -90,14 +90,14 @@
   border-radius: 5px;
   transition: 0.5s;
 }
-.tree li a img {
+.tree li .node-container img {
   width: 50px;
   height: 50px;
   margin-bottom: 10px !important;
   border-radius: 100px;
   margin: auto;
 }
-.tree li a span {
+.tree li .node-container span {
   border: 1px solid #ccc;
   border-radius: 5px;
   color: #666;
@@ -108,17 +108,17 @@
   font-weight: 500;
 }
 /*Hover-Section*/
-.tree li a:hover,
-.tree li a:hover i,
-.tree li a:hover span,
-.tree li a:hover + ul li a {
+.tree li .node-container:hover,
+.tree li .node-container:hover i,
+.tree li .node-container:hover span,
+.tree li .node-container:hover + ul li .node-container {
   background: #c8e4f8;
   color: #000;
   border: 1px solid #94a0b4;
 }
-.tree li a:hover + ul li::after,
-.tree li a:hover + ul li::before,
-.tree li a:hover + ul::before,
-.tree li a:hover + ul ul::before {
+.tree li .node-container:hover + ul li::after,
+.tree li .node-container:hover + ul li::before,
+.tree li .node-container:hover + ul::before,
+.tree li .node-container:hover + ul ul::before {
   border-color: #94a0b4;
 }

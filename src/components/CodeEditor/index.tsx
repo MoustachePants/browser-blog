@@ -1,6 +1,7 @@
 import "./CodeEditor.css";
 import Editor, { useMonaco } from "@monaco-editor/react";
 import { Dispatch, SetStateAction, useEffect } from "react";
+import compressedCode from "../../utils/compressCode";
 
 type EditorProps = {
   code: string;
