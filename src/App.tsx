@@ -86,10 +86,12 @@ function App() {
               </Tree>
             </DevSection>
             <DevSection display={true}>
-              <RenderTree
-                styleSheet={iframeDocument.styleSheets[0]}
-                documentElement={iframeDocument.documentElement}
-              />
+              <Tree>
+                <RenderTree
+                  styleSheet={iframeDocument.styleSheets[0]}
+                  documentElement={iframeDocument.documentElement}
+                />
+              </Tree>
             </DevSection>
           </>
         )}

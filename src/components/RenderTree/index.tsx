@@ -1,6 +1,7 @@
 import "./RenderTree.css";
 import getDomTree from "../../utils/getDomTree";
 import RenderTreeNode from "../../types/RenderTreeNode";
+import TreeNode from "../TreeNode";
 
 type RenderTreeType = {
   styleSheet: CSSStyleSheet;
@@ -44,7 +45,7 @@ const RenderTree = ({ styleSheet, documentElement }: RenderTreeType) => {
     stylesheet: CSSStyleSheet
   ): RenderTreeNode => {
     const node: RenderTreeNode = {
-      tagName: element.tagName,
+      name: element.tagName,
       styles: getComputedStyles(element, stylesheet),
       children: [],
     };
@@ -58,24 +59,22 @@ const RenderTree = ({ styleSheet, documentElement }: RenderTreeType) => {
   };
 
   const renderTree = buildRenderTree(documentElement, styleSheet);
-  console.log(renderTree);
+  console.log(renderTree.children);
 
-  return <div className="render-tree-container"></div>;
+  return (
+    <li className="render-tree-container" title="Document">
+      <div className="node-container">
+        <span>Document</span>
+      </div>
+      {renderTree.children.length > 0 && (
+        <ul>
+          {renderTree.children.map((child, index) => (
+            <TreeNode treeNode={child} />
+          ))}
+        </ul>
+      )}
+    </li>
+  );
 };
 
 export default RenderTree;
-
-//    <li key={Math.random()} title={node.tagName || node.tag}>
-//       <div className="node-container">
-//         <span>{node.elementType}</span>
-//         <span>{node.tagName || node.tag}</span>
-//         {(node.children.length === 0 && node.content) || ``}
-//       </div>
-//       {node.children.length > 0 && (
-//         <ul>
-//           {node.children.map((child) => (
-//             <DomTreeNodes node={child} key={Math.random()} />
-//           ))}
-//         </ul>
-//       )}
-//     </li>

@@ -1,5 +1,5 @@
 type RenderTreeNode = {
-  tagName: string;
+  name: string;
   styles: Record<string, string>;
   children: RenderTreeNode[];
 };
