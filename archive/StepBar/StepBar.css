@@ -1,0 +1,56 @@
+.stages-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.displayed-stage {
+  width: 70%;
+  height: 100%;
+}
+
+.stage-select-container {
+  height: 100%;
+  width: 30%;
+  background-color: red;
+}
+
+.stage-select {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.stage-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.stage-radio {
+  position: absolute;
+  display: none;
+}
+
+.stage-radio-label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: cadetblue;
+  /*border: 2px solid black;*/
+  outline: #666666 solid 2px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.stage-radio:checked:checked ~ .stage-radio-label {
+  background-color: red;
+}

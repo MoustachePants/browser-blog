@@ -1,9 +1,10 @@
 .editor-container {
   width: 100%;
+  min-height: 20rem;
   height: 100%;
 }
 
-.editor-container fieldset {
+.editor-container section {
   height: 100%;
   /*width: 100%;*/
   box-sizing: border-box;

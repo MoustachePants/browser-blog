@@ -1,17 +1,16 @@
 import "./App.css";
 
 import CodeEditor from "./components/CodeEditor";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import IframePreview from "./components/IframePreview";
-import Section from "./components/UI/Section";
 import Tree from "./components/UI/Tree";
-import getDomTree from "./utils/getDomTree";
-import DomTreeNode from "./types/DomTreeNode";
-import DomTreeNodes from "./components/DomTreeNodes";
 import NodeTreeNode from "./types/NodeTreeNode";
 import getNodeTree from "./utils/getNodeTree";
 import NodeTreeNodes from "./components/NodeTreeNodes";
-import StepBar from "./components/StepBar";
+import DevSection from "./components/UI/DevSection";
+import CssTree from "./components/CssTree";
+import DomTree from "./components/DomTree";
+import RenderTree from "./components/RenderTree";
 
 function App() {
   const defaultHtml = `
@@ -29,12 +28,15 @@ function App() {
   const defaultCss = `.red-background {
   background-color: red;
 }
+
+.box, .x {
+  border: 0ch;
+}
 `;
 
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
   const [cssCode, setCssCode] = useState<string>(defaultCss);
   const [iframeDocument, setIframeDocument] = useState<Document>();
-  const [domNode, setDomNode] = useState<DomTreeNode>();
   const [nodeNode, setNodeNode] = useState<NodeTreeNode>();
 
   // BUG
@@ -42,11 +44,9 @@ function App() {
   // this should trigger because the iframeDocument is changed
   useEffect(() => {
     if (!iframeDocument) return;
-    const domNodes = getDomTree(iframeDocument.documentElement);
     const nodeNodes = getNodeTree(iframeDocument.documentElement);
-    setDomNode(domNodes);
     setNodeNode(nodeNodes);
-  }, [iframeDocument, setDomNode, getDomTree, htmlCode, cssCode]);
+  }, [iframeDocument, htmlCode, cssCode]);
 
   const changeHtmlHandler = (html: string) => {
     setHtmlCode(html);
@@ -58,38 +58,54 @@ function App() {
 
   return (
     <div className="App">
-      {/*<Section>*/}
-      {/*  <CodeEditor*/}
-      {/*    code={htmlCode}*/}
-      {/*    onCodeChange={changeHtmlHandler}*/}
-      {/*    title={"HTML"}*/}
-      {/*    type="html"*/}
-      {/*  />*/}
-      {/*  <CodeEditor*/}
-      {/*    code={cssCode}*/}
-      {/*    onCodeChange={changeCssHandler}*/}
-      {/*    title={"CSS"}*/}
-      {/*    type="css"*/}
-      {/*  />*/}
-      {/*</Section>*/}
-      {/*<Section>*/}
-      {/*  <IframePreview*/}
-      {/*    html={htmlCode}*/}
-      {/*    css={cssCode}*/}
-      {/*    setDocument={setIframeDocument}*/}
-      {/*  />*/}
-      {/*</Section>*/}
-      {/*{domNode && (*/}
-      {/*  <Section>*/}
-      {/*    <Tree>{<DomTreeNodes node={domNode} />}</Tree>*/}
-      {/*  </Section>*/}
-      {/*)}*/}
-      {/*{nodeNode && (*/}
-      {/*  <Section>*/}
-      {/*    <Tree>{<NodeTreeNodes node={nodeNode} />}</Tree>*/}
-      {/*  </Section>*/}
-      {/*)}*/}
-      <StepBar />
+      <DevSection name="Html Editor" display={true}>
+        <CodeEditor
+          code={htmlCode}
+          onCodeChange={changeHtmlHandler}
+          title={"HTML"}
+          type="html"
+        />
+      </DevSection>
+      <DevSection name={"Css Editor"} display={true}>
+        <CodeEditor
+          code={cssCode}
+          onCodeChange={changeCssHandler}
+          title={"CSS"}
+          type="css"
+        />
+        {iframeDocument && (
+          <>
+            <DevSection name="DOM" display={true}>
+              <Tree>
+                {<DomTree documentElement={iframeDocument.documentElement} />}
+              </Tree>
+            </DevSection>
+            <DevSection display={true}>
+              <Tree>
+                <CssTree styleSheet={iframeDocument.styleSheets[0]} />
+              </Tree>
+            </DevSection>
+            <DevSection display={true}>
+              <RenderTree
+                styleSheet={iframeDocument.styleSheets[0]}
+                documentElement={iframeDocument.documentElement}
+              />
+            </DevSection>
+          </>
+        )}
+      </DevSection>
+      <DevSection name="Iframe" display={true}>
+        <IframePreview
+          html={htmlCode}
+          css={cssCode}
+          setDocument={setIframeDocument}
+        />
+      </DevSection>
+      {nodeNode && (
+        <DevSection name="NODE" display={false}>
+          <Tree>{<NodeTreeNodes node={nodeNode} />}</Tree>
+        </DevSection>
+      )}
     </div>
   );
 }

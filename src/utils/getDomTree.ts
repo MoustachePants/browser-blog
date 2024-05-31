@@ -1,6 +1,7 @@
 import DomTreeNode from "../types/DomTreeNode";
 
 const getDomTree = (node: Element): DomTreeNode => {
+  const elementType = node.constructor.name;
   const tag = node.tagName.toLowerCase();
   const content = node.textContent;
   const tagName = node.id || node.className;
@@ -10,7 +11,7 @@ const getDomTree = (node: Element): DomTreeNode => {
 
   // console.log({ tag, tagName, children });
 
-  const treeNode: DomTreeNode = { tag, children };
+  const treeNode: DomTreeNode = { elementType, tag, children };
 
   // Add tagName if it exists
   if (tagName) {

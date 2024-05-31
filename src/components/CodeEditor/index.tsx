@@ -18,21 +18,18 @@ const CodeEditor = ({ code, onCodeChange, title, type }: EditorProps) => {
 
   return (
     <div className="editor-container">
-      <fieldset>
-        <legend>{title}</legend>
-        <Editor
-          // height="50vh"
-          defaultLanguage={type}
-          defaultValue={code.trim()}
-          theme={"vs-dark"}
-          options={{
-            minimap: {
-              enabled: false,
-            },
-          }}
-          onChange={onChangeHandler}
-        />
-      </fieldset>
+      <Editor
+        height="20rem"
+        defaultLanguage={type}
+        defaultValue={code.trim()}
+        theme={"vs-dark"}
+        options={{
+          minimap: {
+            enabled: false,
+          },
+        }}
+        onChange={onChangeHandler}
+      />
     </div>
   );
 };
