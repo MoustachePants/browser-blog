@@ -103,11 +103,6 @@ function App() {
           setDocument={setIframeDocument}
         />
       </DevSection>
-      {nodeNode && (
-        <DevSection name="NODE" display={false}>
-          <Tree>{<NodeTreeNodes node={nodeNode} />}</Tree>
-        </DevSection>
-      )}
     </div>
   );
 }

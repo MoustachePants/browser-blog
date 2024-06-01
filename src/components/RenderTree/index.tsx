@@ -2,71 +2,90 @@ import "./RenderTree.css";
 import getDomTree from "../../utils/getDomTree";
 import RenderTreeNode from "../../types/RenderTreeNode";
 import TreeNode from "../TreeNode";
+import getComputedStylesForElement from "../../utils/getComputedStylesForElement";
+import TreeNodeType from "../../types/TreeNodeType";
 
-type RenderTreeType = {
+type RenderTreeProps = {
   styleSheet: CSSStyleSheet;
   documentElement: HTMLElement;
 };
 
-const RenderTree = ({ styleSheet, documentElement }: RenderTreeType) => {
-  const cssStyleRulesArr = Object.values(styleSheet.cssRules).filter(
-    (cssRule) => cssRule.STYLE_RULE === 1
-  ) as CSSStyleRule[];
-  const documentNode = getDomTree(documentElement);
+const RenderTree = ({ styleSheet, documentElement }: RenderTreeProps) => {
+  const NON_VISIBLE_TAGS = ["HEAD", "SCRIPT", "STYLE", "LINK", "META", "TITLE"];
 
-  // console.log(cssStyleRulesArr, documentNode);
-
-  const getComputedStyles = (
+  const shouldSkipElement = (
     element: Element,
-    stylesheet: CSSStyleSheet
-  ): Record<string, string> => {
-    const styles: Record<string, string> = {};
-
-    // Iterate over all CSS rules in the stylesheet
-    for (let i = 0; i < stylesheet.cssRules.length; i++) {
-      const rule = stylesheet.cssRules[i] as CSSStyleRule;
-
-      // Check if the rule applies to the element
-      if (element.matches(rule.selectorText)) {
-        // Parse the style declaration
-        const style = rule.style;
-        for (let j = 0; j < style.length; j++) {
-          const prop = style[j];
-          styles[prop] = style.getPropertyValue(prop);
-        }
-      }
+    styles: Record<string, string>
+  ): boolean => {
+    // Skip non-visible tags
+    if (NON_VISIBLE_TAGS.includes(element.tagName)) {
+      return true;
     }
 
-    return styles;
+    // Skip elements with display: none
+    if (styles["display"] === "none") {
+      return true;
+    }
+
+    return false;
   };
 
+  // const buildRenderTree = (
+  //   element: Element,
+  //   stylesheet: CSSStyleSheet
+  // ): TreeNodeType | null => {
+  //   const styles = getComputedStylesForElement(element, stylesheet);
+  //
+  //   if (shouldSkipElement(element, styles)) {
+  //     return null;
+  //   }
+  //
+  //   const node: TreeNodeType = {
+  //     name: element.tagName,
+  //     styles,
+  //     children: [],
+  //   };
+  //
+  //   // Recursively build the render tree for each child element
+  //   Array.from(element.children).forEach((child) => {
+  //     const childNode = buildRenderTree(child, stylesheet);
+  //     if (childNode !== null) node.children!.push(childNode);
+  //   });
+  //
+  //   return node;
+  // };
+
   const buildRenderTree = (
-    element: Element,
+    node: Node,
     stylesheet: CSSStyleSheet
-  ): RenderTreeNode => {
-    const node: RenderTreeNode = {
-      name: element.tagName,
-      styles: getComputedStyles(element, stylesheet),
-      children: [],
-    };
+  ): TreeNodeType | null => {
+    if (node.nodeType === Node.ELEMENT_NODE) {
+      const element = node as Element;
+      const styles = getComputedStylesForElement(element, stylesheet);
+      if (shouldSkipElement(element, styles)) return null;
 
-    // Recursively build the render tree for each child element
-    Array.from(element.children).forEach((child) => {
-      node.children.push(buildRenderTree(child, stylesheet));
-    });
+      const children = Array.from(element.childNodes)
+        .map((child) => buildRenderTree(child, stylesheet))
+        .filter(Boolean) as TreeNodeType[];
 
-    return node;
+      return { name: element.tagName, styles, children };
+    } else if (node.nodeType === Node.TEXT_NODE) {
+      const textContent = node.textContent?.trim();
+      if (textContent)
+        return { name: "TEXT", textContent, styles: {}, children: [] };
+    }
+
+    return null;
   };
 
   const renderTree = buildRenderTree(documentElement, styleSheet);
-  console.log(renderTree.children);
 
   return (
     <li className="render-tree-container" title="Document">
       <div className="node-container">
         <span>Document</span>
       </div>
-      {renderTree.children.length > 0 && (
+      {renderTree?.children && renderTree.children.length > 0 && (
         <ul>
           {renderTree.children.map((child, index) => (
             <TreeNode treeNode={child} />

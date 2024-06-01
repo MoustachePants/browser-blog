@@ -1,7 +1,7 @@
 type RenderTreeNode = {
-  name: string;
+  tagName?: string;
+  textContent?: string;
   styles: Record<string, string>;
   children: RenderTreeNode[];
 };
-
 export default RenderTreeNode;

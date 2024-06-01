@@ -7,6 +7,7 @@ type TreeNodeType = {
   attributes?: { [key: string]: string };
 
   children?: TreeNodeType[];
+  textContent?: string;
 };
 
 export default TreeNodeType;
