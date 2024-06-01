@@ -1,4 +1,4 @@
-import TreeNodeType from "../../types/TreeNodeType";
+import TreeNodeType from "../../../types/TreeNodeType";
 
 type TreeNodeProps = {
   treeNode: TreeNodeType;

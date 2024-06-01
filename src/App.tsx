@@ -1,16 +1,13 @@
 import "./App.css";
 
-import CodeEditor from "./components/CodeEditor";
 import React, { useEffect, useState } from "react";
-import IframePreview from "./components/IframePreview";
-import Tree from "./components/UI/Tree";
-import NodeTreeNode from "./types/NodeTreeNode";
-import getNodeTree from "./utils/getNodeTree";
-import NodeTreeNodes from "./components/NodeTreeNodes";
 import DevSection from "./components/UI/DevSection";
-import CssTree from "./components/CssTree";
-import DomTree from "./components/DomTree";
-import RenderTree from "./components/RenderTree";
+import CodeEditor from "./components/InterfaceComponents/CodeEditor";
+import Tree from "./components/UI/Tree";
+import CssTree from "./components/InterfaceComponents/CssTree";
+import RenderTree from "./components/InterfaceComponents/RenderTree";
+import IframePreview from "./components/InterfaceComponents/IframePreview";
+import DomTree from "./components/InterfaceComponents/DomTree";
 
 function App() {
   const defaultHtml = `
@@ -37,16 +34,10 @@ function App() {
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
   const [cssCode, setCssCode] = useState<string>(defaultCss);
   const [iframeDocument, setIframeDocument] = useState<Document>();
-  const [nodeNode, setNodeNode] = useState<NodeTreeNode>();
 
   // BUG
   // shouldn't write here html and css code. not best practice.
   // this should trigger because the iframeDocument is changed
-  useEffect(() => {
-    if (!iframeDocument) return;
-    const nodeNodes = getNodeTree(iframeDocument.documentElement);
-    setNodeNode(nodeNodes);
-  }, [iframeDocument, htmlCode, cssCode]);
 
   const changeHtmlHandler = (html: string) => {
     setHtmlCode(html);

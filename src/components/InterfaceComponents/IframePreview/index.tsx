@@ -1,6 +1,6 @@
 import "./IframePreview.css";
 import { useEffect, useRef } from "react";
-import compressCode from "../../utils/compressCode";
+import compressCode from "../../../utils/compressCode";
 
 type IframePreviewProps = {
   html: string;

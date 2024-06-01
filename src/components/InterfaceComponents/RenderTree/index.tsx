@@ -1,9 +1,7 @@
 import "./RenderTree.css";
-import getDomTree from "../../utils/getDomTree";
-import RenderTreeNode from "../../types/RenderTreeNode";
+import TreeNodeType from "../../../types/TreeNodeType";
 import TreeNode from "../TreeNode";
-import getComputedStylesForElement from "../../utils/getComputedStylesForElement";
-import TreeNodeType from "../../types/TreeNodeType";
+import getComputedStylesForElement from "../../../utils/getComputedStylesForElement";
 
 type RenderTreeProps = {
   styleSheet: CSSStyleSheet;
