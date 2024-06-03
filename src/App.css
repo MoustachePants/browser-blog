@@ -17,5 +17,10 @@ body {
 
 .App {
   height: 100%;
-  /*display: flex;*/
+  margin: auto;
+  /*background-color: rgba(102, 102, 102, 0.24);*/
+  max-width: 1300px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Assistant ExtraLight";
 }

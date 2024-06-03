@@ -1,0 +1,13 @@
+.blog-header-container {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.blog-main-title {
+  font-size: 5rem;
+}
+
+.blog-sub-title {
+}
