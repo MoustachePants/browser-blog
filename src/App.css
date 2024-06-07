@@ -19,8 +19,14 @@ body {
   height: 100%;
   margin: auto;
   /*background-color: rgba(102, 102, 102, 0.24);*/
-  max-width: 1300px;
+  max-width: 768px;
   display: flex;
   flex-direction: column;
-  font-family: "Assistant ExtraLight";
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 1.125em;
 }
+
+/*@media (min-width: 640px) {*/
+/*  .App {*/
+/*  }*/
+/*}*/

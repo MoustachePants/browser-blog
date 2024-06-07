@@ -1,0 +1,225 @@
+import "./Main.css";
+import Note from "../Note";
+
+const Main = () => {
+  return (
+    <article className="blog-main-container">
+      {/*<p>*/}
+      {/*  In February 2024, I decided to revive an old hobby of mine: web*/}
+      {/*  development. In the past, I created lightweight web applications and*/}
+      {/*  visual simulator interfaces, but life took me in different directions,*/}
+      {/*  and I had to focus on my job.*/}
+      {/*</p>*/}
+      {/*<p>*/}
+      {/*  Recently, a friend recommended I visit{" "}*/}
+      {/*  <a href={"https://roadmap.sh/"}>roadmap.sh</a> to gain more knowledge*/}
+      {/*  and experience. One of the first articles in the Frontend skill tree is*/}
+      {/*  about how the browser renders a web page, and it immediately fascinated*/}
+      {/*  me how complex this hidden process is. We often take for granted the*/}
+      {/*  seamless transition from clicking a link to seeing a fully loaded*/}
+      {/*  webpage. It's easy to overlook the intricate mechanics behind the scenes*/}
+      {/*  (well, did you think about it after clicking the link that led you*/}
+      {/*  here?).*/}
+      {/*</p>*/}
+      {/*<Note>*/}
+      {/*  Note: you must be familiar with at least basic knowledge of html and css*/}
+      {/*  in order to understand this article 🙂*/}
+      {/*</Note>*/}
+      {/*<p>*/}
+      {/*  In this article, I will explain and demonstrate the basics of browser*/}
+      {/*  rendering for fellow enthusiasts like myself. My goal is to make this*/}
+      {/*  topic as easy and understandable as possible while providing practical*/}
+      {/*  insights to enhance our web development skills. I will link to every*/}
+      {/*  resource I used, allowing you to explore further into this fascinating*/}
+      {/*  subject (it's a never-ending rabbit hole, trust me).*/}
+      {/*</p>*/}
+      {/*<p>*/}
+      {/*  There are several browser rendering engines (Blink for Chrome and Edge,*/}
+      {/*  WebKit for Safari, Gecko for Firefox, etc.). Lucky for us, all of them*/}
+      {/*  work in a similar way.*/}
+      {/*</p>*/}
+      <p>
+        In February 2024, I decided to revive an old hobby of mine: web
+        development. In the past, I created lightweight web applications and
+        visual simulator interfaces, but life took me in different directions,
+        and I had to focus on my job. Recently, a friend recommended I visit{" "}
+        <a href="https://roadmap.sh" target="_blank">
+          roadmap.sh
+        </a>{" "}
+        to gain more knowledge and experience. One of the first articles in the
+        frontend skill tree is about how the browser renders a web page, and it
+        immediately fascinated me how complex this hidden process is.
+      </p>
+      <p>
+        We often take for granted the seamless transition from clicking a link
+        to seeing a fully loaded webpage. It's easy to overlook the intricate
+        mechanics behind the scenes (well, did you think about it after clicking
+        the link that led you here?).
+      </p>
+      <p className="note">
+        Note: you must be familiar with at least basic knowledge of HTML and CSS
+        in order to understand this article 🙂
+      </p>
+      <p>
+        In this article, I will explain and demonstrate the basics of browser
+        rendering for fellow enthusiasts like myself. My goal is to make this
+        topic as easy and understandable as possible while providing practical
+        insights to enhance our web development skills. I will link to every
+        resource I used, allowing you to explore further into this fascinating
+        subject (it's a never-ending rabbit hole, trust me).
+      </p>
+      <p className="note">
+        Note: There are several browser rendering engines (Blink for Chrome and
+        Edge, WebKit for Safari, Gecko for Firefox, etc.). Lucky for us, all of
+        them work in a similar way.
+      </p>
+
+      <div className="stage">
+        <h2>Stage 0: The Blank Web Page</h2>
+        <p>
+          This is a blank web page. We will now follow each step the browser
+          goes through in order to render its content. For now we leave it be,
+          don't miss it too much, we will get back at it.
+        </p>
+        <p>
+          <em>
+            Hover your mouse at it and you will reveal our rendered web page.
+          </em>
+        </p>
+        <div className="placeholder">[empty web page, mini browser design]</div>
+      </div>
+
+      <div className="stage">
+        <h2>Stage 1a: The HTML Stage</h2>
+        <p>
+          After the browser gets its HTML file from the network, it reads and
+          processes the HTML in a process called parsing, i.e., analyzes and
+          translates it to a format that the browser can understand and
+          manipulate. It uses the DOM API to create the finished product of this
+          stage - the DOM tree.
+        </p>
+        <pre>
+          [HTML code] ! You can edit the code to see the new DOM tree and also
+          change the finished web page we will render eventually.
+        </pre>
+        <div className="placeholder">[DOM tree]</div>
+        <p>
+          In JavaScript, when we are using{" "}
+          <code>document.querySelector("p").innerHTML = "hello world"</code> we
+          are actually not changing the HTML source code, but a property of the
+          DOM tree created by the browser.
+        </p>
+      </div>
+
+      <div className="stage">
+        <h2>Stage 1b: The CSS Stage</h2>
+        <p className="note">
+          Note: This stage begins after the browser fetches the CSS file. It can
+          be at the same time as stage 1a.
+        </p>
+        <p>
+          Without delving into sophisticated details, the main job of this stage
+          is similar to Stage 1a. The browser parses the CSS file. Now, instead
+          of using the DOM API, it uses another API set called CSSOM. Therefore,
+          it creates the CSSOM tree - a set of rules for the style and the
+          layout of the page and all of its components.
+        </p>
+        <pre>[CSS code editor]</pre>
+        <div className="placeholder">[CSSOM tree]</div>
+        <p>
+          It is less common to be familiar with the CSSOM compared to the DOM,
+          but some of us have used it without knowing. For example, when we code{" "}
+          <code>document.querySelector("p").style.backgroundColor = "red"</code>
+          , the DOM API calls all the paragraph elements on the page, but the
+          CSSOM API does the work of changing the background color.
+        </p>
+      </div>
+
+      <div className="stage">
+        <h2>Stage 2: JavaScript</h2>
+        <p>
+          Next, the browser executes the JS code. Actually, code execution
+          starts whenever the HTML parser gets to the{" "}
+          <code>&lt;script&gt;</code> tag, unless the <code>defer</code>{" "}
+          attribute is specified and then the execution starts after the
+          document parsing is finished. Another option is the <code>async</code>{" "}
+          attribute which then executes at the same time as the document
+          parsing.
+        </p>
+        <p>Some of the code manipulates the DOM tree or the CSSOM tree.</p>
+        <p className="note">
+          Tips: In order to improve performance, always use <code>defer</code>{" "}
+          or <code>async</code> attributes if possible. Great article by Fidal
+          Mathew
+        </p>
+      </div>
+
+      <div className="stage">
+        <h2>Stage 3: The Render Tree</h2>
+        <p>
+          The browser merges the DOM and CSSOM trees in order to create the
+          third and last tree - the Render Tree. This tree represents all the
+          visible elements on the page and their corresponding styles calculated
+          using the CSSOM tree.
+        </p>
+        <ul>
+          <li>
+            It uses the DOM tree to choose only the visible elements (for
+            example, the <code>&lt;head&gt;</code> element will not pass its
+            strainer).
+          </li>
+          <li>
+            It uses the CSSOM tree to attach each element with its calculated
+            styles.
+          </li>
+        </ul>
+        <p>
+          The renderer follows fixed guidelines for building the render tree.
+          For example, if more than 20 of the same element are nested in one
+          another - it doesn’t render the 20th and so on.
+        </p>
+        <div className="placeholder">[Render Tree]</div>
+        <p className="note">
+          Note: This representation of the render tree is only partial - for
+          example, it doesn't represent CSS rules that are not the type of{" "}
+          <code>CssTypeRule</code> (like <code>cssMediaRule</code>,{" "}
+          <code>cssKeyframeRule</code>…).
+        </p>
+        <p className="note">
+          Tips: If hiding an element is needed - use <code>display: none</code>{" "}
+          instead of <code>opacity: 0</code> if possible. This way the browser
+          will not render something the user can’t see anyway.
+        </p>
+      </div>
+
+      <div className="stage">
+        <h2>Stage 4: Layout</h2>
+        <p>
+          Using the newly created Render Tree, the browser calculates the size
+          and position of every visible element.
+        </p>
+        <div className="placeholder">
+          [web page with basic layout displayed]
+        </div>
+      </div>
+
+      <div className="stage">
+        <h2>Stage 5: Painting</h2>
+        <p>
+          The browser fills in the pixels based on the layout and the styles
+          from the render tree.
+        </p>
+      </div>
+
+      <div className="stage">
+        <h2>Stage 6: Compositing</h2>
+        <p>
+          The final stage - the browser combines all of the layers in order to
+          create the final visible image we see on the screen.
+        </p>
+      </div>
+    </article>
+  );
+};
+
+export default Main;

@@ -1,0 +1,16 @@
+.blog-main-container {
+  line-height: 1.7rem;
+}
+
+.blog-main-container p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+.blog-main-container a {
+  color: darkred;
+}

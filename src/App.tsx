@@ -9,6 +9,7 @@ import RenderTree from "./components/WebRender/RenderTree";
 import IframePreview from "./components/WebRender/IframePreview";
 import DomTree from "./components/WebRender/DomTree";
 import BlogHeader from "./components/Layout/Header";
+import Main from "./components/Layout/Main";
 
 function App() {
   const defaultHtml = `
@@ -98,6 +99,7 @@ function App() {
         {/*</DevSection>*/}
       </>
       <BlogHeader />
+      <Main />
     </div>
   );
 }
