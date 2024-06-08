@@ -12,43 +12,6 @@ import BlogHeader from "./components/Layout/Header";
 import Main from "./components/Layout/Main";
 
 function App() {
-  const defaultHtml = `
-<html>
-    <head>
-        <title>Page Title</title>
-    </head>
-    <body>
-        <h1>This is a Heading</h1>
-        <!--  html comment -->
-        <p class="red-background">This is a paragraph.</p>
-    </body>
-</html>`;
-
-  const defaultCss = `.red-background {
-  background-color: red;
-}
-
-.box, .x {
-  border: 0ch;
-}
-`;
-
-  const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
-  const [cssCode, setCssCode] = useState<string>(defaultCss);
-  const [iframeDocument, setIframeDocument] = useState<Document>();
-
-  // BUG
-  // shouldn't write here html and css code. not best practice.
-  // this should trigger because the iframeDocument is changed
-
-  const changeHtmlHandler = (html: string) => {
-    setHtmlCode(html);
-  };
-
-  const changeCssHandler = (css: string) => {
-    setCssCode(css);
-  };
-
   return (
     <div className="App">
       <>
