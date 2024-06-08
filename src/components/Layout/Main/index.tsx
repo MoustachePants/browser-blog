@@ -8,6 +8,8 @@ import DomTree from "../../WebRender/DomTree";
 import CodeEditor from "../../WebRender/CodeEditor";
 import CssTree from "../../WebRender/CssTree";
 import RenderTree from "../../WebRender/RenderTree";
+import BrowserWindow from "../BrowserWindow";
+import CodeEditorContainer from "../CodeEditorContainer";
 
 // type MainProps = {
 //   html: string;
@@ -98,13 +100,13 @@ const Main = () => {
             Hover your mouse at it and you will reveal our rendered web page.
           </em>
         </p>
-        <div className="placeholder">
+        <BrowserWindow title={"example"}>
           <IframePreview
             html={htmlCode}
             css={cssCode}
             setDocument={setIframeDocument}
           />
-        </div>
+        </BrowserWindow>
       </div>
 
       <div className="stage">
@@ -117,16 +119,16 @@ const Main = () => {
           manipulate. It uses the DOM API to create the finished product of this
           stage - the DOM tree.
         </p>
-        <pre>
+        <CodeEditorContainer language="HTML">
           <CodeEditor
             code={htmlCode}
             onCodeChange={changeHtmlHandler}
             title={"HTML"}
             type="html"
           />
-          ! You can edit the code to see the new DOM tree and also change the
+          You can edit the code to see the new DOM tree and also change the
           finished web page we will render eventually.
-        </pre>
+        </CodeEditorContainer>
         <div className="placeholder">
           {iframeDocument && (
             <Tree>
@@ -156,14 +158,14 @@ const Main = () => {
           it creates the CSSOM tree - a set of rules for the style and the
           layout of the page and all of its components.
         </p>
-        <pre>
+        <CodeEditorContainer language="CSS">
           <CodeEditor
             code={cssCode}
             onCodeChange={changeCssHandler}
             title={"CSS"}
             type="css"
           />
-        </pre>
+        </CodeEditorContainer>
         <div className="placeholder">
           {iframeDocument && (
             <Tree>
