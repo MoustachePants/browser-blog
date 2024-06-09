@@ -1,5 +1,5 @@
 .code-editor {
-  width: 100%;
+  /* width: 100%; */
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
@@ -15,7 +15,7 @@
   border-bottom: 1px solid #ccc;
 }
 
-.language-tag {
+.title-tag {
   font-size: 0.8rem;
 }
 
@@ -25,5 +25,5 @@
 }
 
 .code-editor-content {
-  padding: 1rem;
+  /* padding: 1rem; */
 }

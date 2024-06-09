@@ -61,8 +61,9 @@ const Main = () => {
           roadmap.sh
         </a>{" "}
         to gain more knowledge and experience. One of the first articles in the
-        frontend skill tree is about how the browser renders a web page, and it
-        immediately fascinated me how complex this hidden process is.
+        <a href="https://roadmap.sh/frontend"> frontend skill tree</a> is about
+        how the browser renders a web page, and it immediately fascinated me how
+        complex this hidden process is.
       </p>
       <p>
         We often take for granted the seamless transition from clicking a link
@@ -119,7 +120,7 @@ const Main = () => {
           manipulate. It uses the DOM API to create the finished product of this
           stage - the DOM tree.
         </p>
-        <CodeEditorContainer language="HTML">
+        <CodeEditorContainer title="index.html">
           <CodeEditor
             code={htmlCode}
             onCodeChange={changeHtmlHandler}
@@ -158,7 +159,7 @@ const Main = () => {
           it creates the CSSOM tree - a set of rules for the style and the
           layout of the page and all of its components.
         </p>
-        <CodeEditorContainer language="CSS">
+        <CodeEditorContainer title="stylesheet.css">
           <CodeEditor
             code={cssCode}
             onCodeChange={changeCssHandler}

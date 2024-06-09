@@ -47,6 +47,7 @@
   background-color: #fff;
   color: #333;
   text-align: left;
+  pointer-events: none;
 }
 
 .browser-refresh {
@@ -54,8 +55,4 @@
   border: none;
   font-size: 1rem;
   cursor: default;
-}
-
-.browser-content {
-  /*padding: 1rem;*/
 }

@@ -1,7 +1,11 @@
 import "./CodeEditor.css";
-import Editor, { useMonaco } from "@monaco-editor/react";
-import { Dispatch, SetStateAction, useEffect } from "react";
-import compressedCode from "../../utils/compressCode";
+// import Editor, { useMonaco } from "@monaco-editor/react";
+// import "codemirror/lib/codemirror.css";
+// import "codemirror/theme/material.css";
+// import "codemirror/mode/xml/xml";
+// import "codemirror/mode/javascript/javascript";
+import "codemirror/mode/css/css";
+import { Controlled as ControlledEditor } from "react-codemirror2";
 
 type EditorProps = {
   code: string;
@@ -18,7 +22,7 @@ const CodeEditor = ({ code, onCodeChange, title, type }: EditorProps) => {
 
   return (
     <div className="editor-container">
-      <Editor
+      {/* <Editor
         height="20rem"
         defaultLanguage={type}
         defaultValue={code.trim()}
@@ -29,7 +33,8 @@ const CodeEditor = ({ code, onCodeChange, title, type }: EditorProps) => {
           },
         }}
         onChange={onChangeHandler}
-      />
+      /> */}
+      <ControlledEditor value={code.trim()} onBeforeChange={onChangeHandler} />
     </div>
   );
 };
