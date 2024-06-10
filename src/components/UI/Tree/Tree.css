@@ -132,8 +132,7 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: #f9f9f9;
-  font-family: Arial, Verdana, Tahoma, sans-serif;
+  box-sizing: border-box;
 }
 
 .row {
@@ -141,10 +140,13 @@
   justify-content: center;
   align-items: center;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .tree {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .tree ul {
@@ -153,6 +155,9 @@
   transition: all 0.5s;
   display: flex;
   justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 .tree li {
@@ -161,6 +166,7 @@
   position: relative;
   padding: 20px 5px 0 5px;
   transition: all 0.5s;
+  box-sizing: border-box;
 }
 
 .tree li::before,
@@ -172,6 +178,7 @@
   border-top: 1px solid #ccc;
   width: 50%;
   height: 20px;
+  box-sizing: border-box;
 }
 
 .tree li::after {
@@ -218,12 +225,12 @@
   padding: 5px 10px;
   text-decoration: none;
   color: #666;
-  background-color: #fff;
-  font-size: 12px;
+  font-family: Arial, Verdana, Tahoma;
+  font-size: 11px;
   display: inline-block;
   border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: all 0.5s;
+  box-sizing: border-box;
 }
 
 .tree li a:hover,
@@ -238,16 +245,4 @@
 .tree li a:hover + ul::before,
 .tree li a:hover + ul ul::before {
   border-color: #94a0b4;
-}
-
-.tree li.hovered > a {
-  background: #c8e4f8;
-  color: #000;
-  border: 1px solid #94a0b4;
-}
-
-.tree li.hovered > ul li > a {
-  background: #c8e4f8;
-  color: #000;
-  border: 1px solid #94a0b4;
 }
