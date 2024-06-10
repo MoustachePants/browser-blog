@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import DomTreeNode from "../../../types/DomTreeNode";
+import DomTreeNode from "../../../../types/DomTreeNode";
 
 type DomTreeNodesProps = {
   node: DomTreeNode;
