@@ -1,6 +1,6 @@
 .editor-container {
   width: 100%;
-  min-height: 20rem;
+  /*min-height: 20rem;*/
   height: 100%;
 }
 
@@ -8,4 +8,8 @@
   height: 100%;
   /*width: 100%;*/
   box-sizing: border-box;
+}
+
+.cm-editor {
+  font-size: 0.85rem;
 }

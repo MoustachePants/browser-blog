@@ -11,16 +11,11 @@ import RenderTree from "../../WebRender/RenderTree";
 import BrowserWindow from "../BrowserWindow";
 import CodeEditorContainer from "../CodeEditorContainer";
 
-// type MainProps = {
-//   html: string;
-//   css: string;
-// };
-
 const Main = () => {
-  const defaultHtml = `
-<html>
+  const defaultHtml = `<html>
     <head>
         <title>Page Title</title>
+        <link rel="stylesheet" href="stylesheet.css">
     </head>
     <body>
         <h1>This is a Heading</h1>
@@ -48,6 +43,14 @@ const Main = () => {
 
   const changeCssHandler = (css: string) => {
     setCssCode(css);
+  };
+
+  const resetHtmlHandler = () => {
+    setHtmlCode(defaultHtml);
+  };
+
+  const resetCssHandler = () => {
+    setCssCode(defaultCss);
   };
 
   return (
@@ -120,7 +123,7 @@ const Main = () => {
           manipulate. It uses the DOM API to create the finished product of this
           stage - the DOM tree.
         </p>
-        <CodeEditorContainer title="index.html">
+        <CodeEditorContainer title="index.html" onReset={resetHtmlHandler}>
           <CodeEditor
             code={htmlCode}
             onCodeChange={changeHtmlHandler}
@@ -159,7 +162,7 @@ const Main = () => {
           it creates the CSSOM tree - a set of rules for the style and the
           layout of the page and all of its components.
         </p>
-        <CodeEditorContainer title="stylesheet.css">
+        <CodeEditorContainer title="stylesheet.css" onReset={resetCssHandler}>
           <CodeEditor
             code={cssCode}
             onCodeChange={changeCssHandler}
@@ -258,13 +261,13 @@ const Main = () => {
           Using the newly created Render Tree, the browser calculates the size
           and position of every visible element.
         </p>
-        <div className="placeholder">
+        <BrowserWindow title="example">
           <IframePreview
             html={htmlCode}
             css={cssCode}
             setDocument={setIframeDocument}
           />
-        </div>
+        </BrowserWindow>
       </div>
 
       <div className="stage">
@@ -274,13 +277,13 @@ const Main = () => {
           The browser fills in the pixels based on the layout and the styles
           from the render tree.
         </p>
-        <div className="placeholder">
+        <BrowserWindow title="example">
           <IframePreview
             html={htmlCode}
             css={cssCode}
             setDocument={setIframeDocument}
           />
-        </div>
+        </BrowserWindow>
       </div>
 
       <div className="stage">
@@ -290,13 +293,13 @@ const Main = () => {
           The final stage - the browser combines all of the layers in order to
           create the final visible image we see on the screen.
         </p>
-        <div className="placeholder">
+        <BrowserWindow title="example">
           <IframePreview
             html={htmlCode}
             css={cssCode}
             setDocument={setIframeDocument}
           />
-        </div>
+        </BrowserWindow>
       </div>
     </article>
   );

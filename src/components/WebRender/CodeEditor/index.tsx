@@ -1,11 +1,8 @@
 import "./CodeEditor.css";
-// import Editor, { useMonaco } from "@monaco-editor/react";
-// import "codemirror/lib/codemirror.css";
-// import "codemirror/theme/material.css";
-// import "codemirror/mode/xml/xml";
-// import "codemirror/mode/javascript/javascript";
-import "codemirror/mode/css/css";
-import { Controlled as ControlledEditor } from "react-codemirror2";
+import { useCodeEditor } from "../../../hooks/useCodeEditor";
+import { html } from "@codemirror/lang-html";
+import { css } from "@codemirror/lang-css";
+import { basicSetup } from "codemirror";
 
 type EditorProps = {
   code: string;
@@ -15,28 +12,22 @@ type EditorProps = {
 };
 
 const CodeEditor = ({ code, onCodeChange, title, type }: EditorProps) => {
+  const extensions = [basicSetup];
+  if (type === "html") extensions.push(html());
+  else if (type === "css") extensions.push(css());
+
   const onChangeHandler = (value?: string) => {
     if (!value) return;
     onCodeChange(value);
   };
 
-  return (
-    <div className="editor-container">
-      {/* <Editor
-        height="20rem"
-        defaultLanguage={type}
-        defaultValue={code.trim()}
-        theme={"vs-dark"}
-        options={{
-          minimap: {
-            enabled: false,
-          },
-        }}
-        onChange={onChangeHandler}
-      /> */}
-      <ControlledEditor value={code.trim()} onBeforeChange={onChangeHandler} />
-    </div>
-  );
+  const ref = useCodeEditor({
+    value: code,
+    onChange: onChangeHandler,
+    extensions,
+  });
+
+  return <div className="editor-container" ref={ref}></div>;
 };
 
 export default CodeEditor;
