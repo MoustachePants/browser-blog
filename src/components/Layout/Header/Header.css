@@ -17,7 +17,7 @@
   font-weight: 400;
 }
 
-.blog-header-container ul {
+.blog-header-container > ul {
   list-style: none;
   display: flex;
   flex-direction: column;
