@@ -1,5 +1,5 @@
 import "./Main.css";
-import Note from "../Note";
+import Note from "../../../../archive/Note";
 import { useState } from "react";
 import IframePreview from "../../WebRender/IframePreview";
 import Tree from "../../UI/Tree";
@@ -10,6 +10,7 @@ import CssTree from "../../WebRender/CssTree";
 import RenderTree from "../../WebRender/RenderTree";
 import BrowserWindow from "../BrowserWindow";
 import CodeEditorContainer from "../CodeEditorContainer";
+import removeHeadTag from "../../../utils/removeHeadTag";
 
 const Main = () => {
   const defaultHtml = `<html>
@@ -106,7 +107,7 @@ const Main = () => {
         </p>
         <BrowserWindow title={"example"}>
           <IframePreview
-            html={htmlCode}
+            html={removeHeadTag(htmlCode)}
             css={cssCode}
             setDocument={setIframeDocument}
           />
@@ -263,7 +264,7 @@ const Main = () => {
         </p>
         <BrowserWindow title="example">
           <IframePreview
-            html={htmlCode}
+            html={removeHeadTag(htmlCode)}
             css={cssCode}
             setDocument={setIframeDocument}
           />
@@ -279,7 +280,7 @@ const Main = () => {
         </p>
         <BrowserWindow title="example">
           <IframePreview
-            html={htmlCode}
+            html={removeHeadTag(htmlCode)}
             css={cssCode}
             setDocument={setIframeDocument}
           />
@@ -295,7 +296,7 @@ const Main = () => {
         </p>
         <BrowserWindow title="example">
           <IframePreview
-            html={htmlCode}
+            html={removeHeadTag(htmlCode)}
             css={cssCode}
             setDocument={setIframeDocument}
           />

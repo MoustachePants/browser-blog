@@ -86,7 +86,7 @@ const RenderTree = ({ styleSheet, documentElement }: RenderTreeProps) => {
       {renderTree?.children && renderTree.children.length > 0 && (
         <ul>
           {renderTree.children.map((child, index) => (
-            <TreeNode treeNode={child} />
+            <TreeNode treeNode={child} key={index} />
           ))}
         </ul>
       )}
