@@ -9,7 +9,7 @@ import CodeEditor from "../../WebRender/CodeEditor";
 import CssTree from "../../WebRender/CssTree";
 import RenderTree from "../../WebRender/RenderTree";
 import BrowserWindow from "../BrowserWindow";
-import CodeEditorContainer from "../CodeEditorContainer";
+import DisplayWindow from "../DisplayWindow";
 import removeHeadTag from "../../../utils/removeHeadTag";
 
 const Main = () => {
@@ -69,16 +69,19 @@ const Main = () => {
         how the browser renders a web page, and it immediately fascinated me how
         complex this hidden process is.
       </p>
+      <br />
       <p>
         We often take for granted the seamless transition from clicking a link
         to seeing a fully loaded webpage. It's easy to overlook the intricate
         mechanics behind the scenes (well, did you think about it after clicking
         the link that led you here?).
       </p>
+      <br />
       <p className="note">
         Note: you must be familiar with at least basic knowledge of HTML and CSS
         in order to understand this article 🙂
       </p>
+      <br />
       <p>
         In this article, I will explain and demonstrate the basics of browser
         rendering for fellow enthusiasts like myself. My goal is to make this
@@ -87,11 +90,13 @@ const Main = () => {
         resource I used, allowing you to explore further into this fascinating
         subject (it's a never-ending rabbit hole, trust me).
       </p>
+      <br />
       <p className="note">
         Note: There are several browser rendering engines (Blink for Chrome and
         Edge, WebKit for Safari, Gecko for Firefox, etc.). Lucky for us, all of
         them work in a similar way.
       </p>
+      <br />
       <div className="stage">
         <h2>Stage 0</h2>
         <h3>The Blank Web Page</h3>
@@ -100,11 +105,13 @@ const Main = () => {
           goes through in order to render its content. For now we leave it be,
           don't miss it too much, we will get back at it.
         </p>
+        <br />
         <p>
           <em>
             Hover your mouse at it and you will reveal our rendered web page.
           </em>
         </p>
+        <br />
         <BrowserWindow title={"example"}>
           <IframePreview
             html={removeHeadTag(htmlCode)}
@@ -113,7 +120,6 @@ const Main = () => {
           />
         </BrowserWindow>
       </div>
-
       <div className="stage">
         <h2>Stage 1a</h2>
         <h3>HTML</h3>
@@ -124,7 +130,12 @@ const Main = () => {
           manipulate. It uses the DOM API to create the finished product of this
           stage - the DOM tree.
         </p>
-        <CodeEditorContainer title="index.html" onReset={resetHtmlHandler}>
+        <br />
+        <DisplayWindow
+          type={"code"}
+          title="index.html"
+          onReset={resetHtmlHandler}
+        >
           <CodeEditor
             code={htmlCode}
             onCodeChange={changeHtmlHandler}
@@ -133,14 +144,20 @@ const Main = () => {
           />
           You can edit the code to see the new DOM tree and also change the
           finished web page we will render eventually.
-        </CodeEditorContainer>
-        <div className="placeholder">
-          {iframeDocument && (
+        </DisplayWindow>
+        <br />
+        {iframeDocument && (
+          <DisplayWindow
+            type={"tree"}
+            title="Dom Tree"
+            onReset={() => console.log("reset")}
+          >
             <Tree>
               <DomTree documentElement={iframeDocument.documentElement} />
             </Tree>
-          )}
-        </div>
+          </DisplayWindow>
+        )}
+        <br />
         <p>
           In JavaScript, when we are using{" "}
           <code>document.querySelector("p").innerHTML = "hello world"</code> we
@@ -148,7 +165,6 @@ const Main = () => {
           DOM tree created by the browser.
         </p>
       </div>
-
       <div className="stage">
         <h2>Stage 1b</h2>
         <h3>CSS</h3>
@@ -156,6 +172,7 @@ const Main = () => {
           Note: This stage begins after the browser fetches the CSS file. It can
           be at the same time as stage 1a.
         </p>
+        <br />
         <p>
           Without delving into sophisticated details, the main job of this stage
           is similar to Stage 1a. The browser parses the CSS file. Now, instead
@@ -163,21 +180,32 @@ const Main = () => {
           it creates the CSSOM tree - a set of rules for the style and the
           layout of the page and all of its components.
         </p>
-        <CodeEditorContainer title="stylesheet.css" onReset={resetCssHandler}>
+        <br />
+        <DisplayWindow
+          type={"code"}
+          title="stylesheet.css"
+          onReset={resetCssHandler}
+        >
           <CodeEditor
             code={cssCode}
             onCodeChange={changeCssHandler}
             title={"CSS"}
             type="css"
           />
-        </CodeEditorContainer>
-        <div className="placeholder">
+        </DisplayWindow>
+        <br />
+        <DisplayWindow
+          type={"tree"}
+          title="Css Tree"
+          onReset={() => console.log("reset")}
+        >
           {iframeDocument && (
             <Tree>
               <CssTree styleSheet={iframeDocument.styleSheets[0]} />
             </Tree>
           )}
-        </div>
+        </DisplayWindow>
+        <br />
         <p>
           It is less common to be familiar with the CSSOM compared to the DOM,
           but some of us have used it without knowing. For example, when we code{" "}
@@ -186,7 +214,6 @@ const Main = () => {
           CSSOM API does the work of changing the background color.
         </p>
       </div>
-
       <div className="stage">
         <h2>Stage 2</h2>
         <h3>JavaScript</h3>
@@ -199,14 +226,15 @@ const Main = () => {
           attribute which then executes at the same time as the document
           parsing.
         </p>
+        <br />
         <p>Some of the code manipulates the DOM tree or the CSSOM tree.</p>
+        <br />
         <p className="note">
           Tips: In order to improve performance, always use <code>defer</code>{" "}
           or <code>async</code> attributes if possible. Great article by Fidal
           Mathew
         </p>
       </div>
-
       <div className="stage">
         <h2>Stage 3</h2>
         <h3>The Render Tree</h3>
@@ -216,6 +244,7 @@ const Main = () => {
           visible elements on the page and their corresponding styles calculated
           using the CSSOM tree.
         </p>
+        <br />
         <ul>
           <li>
             It uses the DOM tree to choose only the visible elements (for
@@ -227,34 +256,42 @@ const Main = () => {
             styles.
           </li>
         </ul>
+        <br />
         <p>
           The renderer follows fixed guidelines for building the render tree.
           For example, if more than 20 of the same element are nested in one
           another - it doesn't render the 20th and so on.
         </p>
-        <div className="placeholder">
-          {iframeDocument && (
+        <br />
+        {iframeDocument && (
+          <DisplayWindow
+            title={"Render Tree"}
+            type={"tree"}
+            onReset={() => console.log("reset")}
+          >
             <Tree>
               <RenderTree
                 styleSheet={iframeDocument.styleSheets[0]}
                 documentElement={iframeDocument.documentElement}
               />
             </Tree>
-          )}
-        </div>
+          </DisplayWindow>
+        )}
+        <br />
         <p className="note">
           Note: This representation of the render tree is only partial - for
           example, it doesn't represent CSS rules that are not the type of{" "}
           <code>CssTypeRule</code> (like <code>cssMediaRule</code>,{" "}
           <code>cssKeyframeRule</code>…).
         </p>
+        <br />
         <p className="note">
           Tips: If hiding an element is needed - use <code>display: none</code>{" "}
           instead of <code>opacity: 0</code> if possible. This way the browser
           will not render something the user can’t see anyway.
         </p>
+        <br />
       </div>
-
       <div className="stage">
         <h2>Stage 4</h2>
         <h3>Layout</h3>
@@ -262,6 +299,7 @@ const Main = () => {
           Using the newly created Render Tree, the browser calculates the size
           and position of every visible element.
         </p>
+        <br />
         <BrowserWindow title="example">
           <IframePreview
             html={removeHeadTag(htmlCode)}
@@ -270,7 +308,6 @@ const Main = () => {
           />
         </BrowserWindow>
       </div>
-
       <div className="stage">
         <h2>Stage 5</h2>
         <h3>Painting</h3>
@@ -278,6 +315,7 @@ const Main = () => {
           The browser fills in the pixels based on the layout and the styles
           from the render tree.
         </p>
+        <br />
         <BrowserWindow title="example">
           <IframePreview
             html={removeHeadTag(htmlCode)}
@@ -286,7 +324,6 @@ const Main = () => {
           />
         </BrowserWindow>
       </div>
-
       <div className="stage">
         <h2>Stage 6</h2>
         <h3>Compositing</h3>
@@ -294,6 +331,7 @@ const Main = () => {
           The final stage - the browser combines all of the layers in order to
           create the final visible image we see on the screen.
         </p>
+        <br />
         <BrowserWindow title="example">
           <IframePreview
             html={removeHeadTag(htmlCode)}

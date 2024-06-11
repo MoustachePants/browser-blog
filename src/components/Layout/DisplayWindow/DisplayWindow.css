@@ -1,12 +1,13 @@
-.code-editor {
+.display-window {
   /* width: 100%; */
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /*min-height: 6rem;*/
 }
 
-.code-editor-header {
+.display-window-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,11 +18,16 @@
   color: #777;
 }
 
-.reset-code-btn {
+.reset-btn {
   font-size: inherit;
   font-family: inherit;
   background-color: transparent;
   border: none;
   cursor: pointer;
   color: inherit;
+}
+
+.react-transform-wrapper {
+  width: 100% !important;
+  height: 16rem !important;
 }
