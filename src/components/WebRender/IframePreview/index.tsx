@@ -1,25 +1,38 @@
 import "./IframePreview.css";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import compressCode from "../../../utils/compressCode";
 
 type IframePreviewProps = {
   html: string;
   css: string;
   setDocument: (documentObj: Document) => void;
+  mode: "empty" | "layout" | "paint";
 };
 
-const IframePreview = ({ html, css, setDocument }: IframePreviewProps) => {
+const layoutCssStylesheet =
+  "body:not(:hover), body:not(:hover) * {\n" +
+  "    outline: 1px dashed #000 !important;\n" +
+  "    display: block !important;\n" +
+  "    background-color: transparent !important;\n" +
+  "    color: transparent !important;\n" +
+  "    box-sizing: border-box !important;\n" +
+  "    transition: all 0.2s ease-in-out !important;\n" +
+  "    user-select: none !important; /* Make text unselectable */\n" +
+  "}\n" +
+  "\n" +
+  "/* Add transition effect */\n" +
+  "body {\n" +
+  "    transition: all 0.2s ease-in-out !important;\n" +
+  "}";
+
+const IframePreview = ({
+  html,
+  css,
+  setDocument,
+  mode,
+}: IframePreviewProps) => {
   const compressedHtml = compressCode(html); // to not include line breaks in html as nodes in node tree
   const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  // // oninput="i.srcdoc=h.value+'<style>'+c.value+
-  // // '</style><script>'+j.value+'<\/script>'">
-  //
-  // // update iframe
-  // useEffect(() => {
-  //   if (!iframeRef.current) return;
-  //   iframeRef.current.srcdoc = compressedHtml + `<style>` + css + `</style>`;
-  // }, [compressedHtml, css]);
 
   // update html
   useEffect(() => {
@@ -43,17 +56,43 @@ const IframePreview = ({ html, css, setDocument }: IframePreviewProps) => {
       const styleElement = iframeDocument.createElement("style");
       styleElement.innerHTML = css;
       iframeDocument.head.appendChild(styleElement);
+
+      //if mode layout
+      if (mode === "layout") {
+        const layoutStyleElement = iframeDocument.createElement("style");
+        layoutStyleElement.innerHTML = layoutCssStylesheet;
+        iframeDocument.head.appendChild(layoutStyleElement);
+      }
     }
   }, [css, html]);
 
   useEffect(() => {
     if (!iframeRef.current) return;
     const iframeDocument = iframeRef.current.contentDocument!;
-    // console.log(iframeDocument);
     setDocument(iframeDocument);
   }, [html, css, iframeRef, setDocument]);
 
-  return <iframe ref={iframeRef} className="iframe-preview" />;
+  let className: string;
+  switch (mode) {
+    case "empty": {
+      className = "iframe-preview iframe-empty";
+      break;
+    }
+    case "layout": {
+      className = "iframe-preview iframe-layout";
+      break;
+    }
+    case "paint": {
+      className = "iframe-preview iframe-paint";
+      break;
+    }
+  }
+
+  return (
+    <div className="iframe-container">
+      <iframe ref={iframeRef} className={className} />
+    </div>
+  );
 };
 
 export default IframePreview;

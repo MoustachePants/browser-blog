@@ -117,6 +117,7 @@ const Main = () => {
             html={removeHeadTag(htmlCode)}
             css={cssCode}
             setDocument={setIframeDocument}
+            mode="empty"
           />
         </BrowserWindow>
       </div>
@@ -305,6 +306,7 @@ const Main = () => {
             html={removeHeadTag(htmlCode)}
             css={cssCode}
             setDocument={setIframeDocument}
+            mode="layout"
           />
         </BrowserWindow>
       </div>
@@ -321,6 +323,7 @@ const Main = () => {
             html={removeHeadTag(htmlCode)}
             css={cssCode}
             setDocument={setIframeDocument}
+            mode="paint"
           />
         </BrowserWindow>
       </div>
@@ -331,14 +334,6 @@ const Main = () => {
           The final stage - the browser combines all of the layers in order to
           create the final visible image we see on the screen.
         </p>
-        <br />
-        <BrowserWindow title="example">
-          <IframePreview
-            html={removeHeadTag(htmlCode)}
-            css={cssCode}
-            setDocument={setIframeDocument}
-          />
-        </BrowserWindow>
       </div>
     </article>
   );
