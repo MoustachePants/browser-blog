@@ -9,7 +9,7 @@ import { html } from "@codemirror/lang-html";
 function App() {
   return (
     <div className="App">
-      <BlogHeader />
+      {/*<BlogHeader />*/}
       <Main />
     </div>
   );

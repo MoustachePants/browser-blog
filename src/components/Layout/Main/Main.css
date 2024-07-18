@@ -93,115 +93,180 @@
 /*}*/
 
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
+  font-family: "Arial", sans-serif;
+  line-height: 1.8;
   color: #333;
-  background-color: #f9f9f9;
-  margin: 0;
+  max-width: 100%;
+  margin: 0 auto;
   padding: 20px;
+  background-color: #f0f0f0;
 }
 
 .blog-main-container {
-  max-width: 700px;
-  margin: auto;
-  background: #fff;
-  padding: 20px;
+  background-color: white;
+  padding: 5% 7%;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
 }
 
-.blog-main-container p {
-  margin-bottom: 20px;
-}
-
-.blog-main-container h3,
-.blog-main-container h4,
-.blog-main-container h5 {
-  margin-top: 30px;
-  margin-bottom: 10px;
+.blog-main-title {
+  font-size: 2.5em;
   color: #2c3e50;
+  margin-bottom: 0.2em;
+  border-bottom: none;
+  text-align: center;
 }
 
-.blog-main-container a {
-  color: #3498db;
+.blog-sub-title {
+  font-size: 1.2em;
+  color: #7f8c8d;
+  margin-bottom: 1.5em;
+  font-weight: normal;
+  text-align: center;
+}
+
+.header-details {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 1em 0;
+}
+
+.header-details li {
+  margin-bottom: 0;
+}
+
+.header-details h3 {
+  font-size: 1em;
+  color: #555;
+  margin: 0;
+  border-bottom: none;
+  font-weight: normal;
+}
+
+h3,
+h4 {
+  color: #2c3e50;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+h3 {
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5em;
+}
+
+p {
+  margin-bottom: 1.5em;
+}
+
+a {
+  color: #e74c3c;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-.blog-main-container a:hover {
-  text-decoration: underline;
+a:hover {
+  color: #c0392b;
 }
 
-.blog-main-container code {
-  background-color: #f1f1f1;
+code {
+  background-color: #f8f8f8;
   padding: 2px 4px;
   border-radius: 4px;
+  font-family: "Courier New", monospace;
 }
 
-.blog-main-container cite {
+blockquote {
+  border-left: 4px solid #3498db;
+  padding-left: 20px;
+  margin-left: 0;
+  margin-bottom: 1.5em;
   font-style: italic;
   color: #7f8c8d;
 }
 
 ul {
-  list-style: disc;
   padding-left: 20px;
+  margin-bottom: 1.5em;
 }
 
 li {
-  margin-bottom: 10px;
+  margin-bottom: 0.75em;
 }
 
-blockquote {
-  border-left: 4px solid #3498db;
-  padding-left: 15px;
-  color: #555;
-  margin: 20px 0;
-  background-color: #f1f1f1;
-  border-radius: 4px;
-  padding: 15px;
-}
-
-.blog-main-container img {
-  max-width: 100%;
+.browser-window {
+  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
+  overflow: hidden;
+  margin: 2em 0;
 }
 
-.blog-main-container .code-editor,
-.blog-main-container .tree,
-.blog-main-container .browser-window {
-  margin: 20px 0;
+.browser-window .title {
   background-color: #f1f1f1;
-  padding: 15px;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.browser-window .content {
+  padding: 20px;
+}
+
+.tree {
+  font-family: "Courier New", monospace;
+  line-height: 1.5;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 1em;
+  background-color: #f8f8f8;
   border-radius: 4px;
 }
 
-/* Responsive Design */
+/* Responsive design */
 @media (max-width: 768px) {
   body {
     padding: 10px;
   }
 
   .blog-main-container {
-    padding: 15px;
+    padding: 5%;
   }
 
-  blockquote {
-    padding-left: 10px;
+  h3 {
+    font-size: 1.5em;
+  }
+
+  h4 {
+    font-size: 1.2em;
+  }
+
+  .blog-main-title {
+    font-size: 2em;
+  }
+
+  .blog-sub-title {
+    font-size: 1em;
+  }
+
+  .header-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header-details li {
+    margin-bottom: 0.5em;
   }
 }
 
-@media (max-width: 480px) {
-  body {
-    padding: 5px;
-  }
-
+@media (min-width: 769px) {
   .blog-main-container {
-    padding: 10px;
-  }
-
-  blockquote {
-    padding-left: 5px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

@@ -54,6 +54,18 @@ const Main = () => {
 
   return (
     <article className="blog-main-container">
+      <h1 className="blog-main-title">Browser Render Made Easy</h1>
+      <h2 className="blog-sub-title">
+        Trying to explain hard stuff the simple way
+      </h2>
+      <ul className="header-details">
+        <li>
+          <h3>Elad Laor</h3>
+        </li>
+        <li>
+          <h3>June 1st, 2024 </h3>
+        </li>
+      </ul>
       <p>
         Lately I decided to revive an old hobby of mine: web development. In the
         past, I created lightweight web applications and visual simulator
