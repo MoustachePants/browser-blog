@@ -9,6 +9,8 @@ import RenderTree from "../../WebRender/RenderTree";
 import BrowserWindow from "../BrowserWindow";
 import DisplayWindow from "../DisplayWindow";
 import removeHeadTag from "../../../utils/removeHeadTag";
+import CssomTree from "../../WebRender/CssomTree";
+import CSSOMTree from "../../WebRender/CssomTree";
 
 const Main = () => {
   const defaultHtml = `<html>
@@ -60,10 +62,14 @@ const Main = () => {
       </h2>
       <ul className="header-details">
         <li>
-          <h3>Elad Laor</h3>
+          <h3>
+            <a href="https://www.linkedin.com/in/elad-laor-a7701923b/">
+              Elad Laor
+            </a>
+          </h3>
         </li>
         <li>
-          <h3>June 1st, 2024 </h3>
+          <h3>August 19th, 2024 </h3>
         </li>
       </ul>
       <p>
@@ -242,6 +248,17 @@ const Main = () => {
         get this declaration).
       </p>
       <p>[CSSOM tree]</p>
+      <DisplayWindow
+        type={"tree"}
+        title="Cssom Tree"
+        onReset={() => console.log("reset")}
+      >
+        {iframeDocument && (
+          <Tree>
+            <CSSOMTree stylesheet={iframeDocument.styleSheets[0]} />
+          </Tree>
+        )}
+      </DisplayWindow>{" "}
       <h5>Things we can do now that we know the CSSOM tree</h5>
       <p>
         It is less common to be familiar with the CSSOM compared to the DOM, but

@@ -143,6 +143,8 @@
 }
 
 .tree ul {
+  padding-left: unset;
+  margin-bottom: unset;
   /*width: 100%;*/
   display: flex;
   /*align-items: center;*/
@@ -162,7 +164,7 @@
 .tree ul li div {
   display: inline-block;
   border: rgba(0, 0, 0, 0.63) 1px solid;
-  padding: 0.2rem 0.4rem;
+  padding: 0.4rem 0.8rem;
 }
 
 .tree li::before,
