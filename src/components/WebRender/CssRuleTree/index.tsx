@@ -1,10 +1,10 @@
 import React, { ReactElement } from "react";
 
-type CssTreeProps = {
+type CssRuleTreeProps = {
   styleSheet: CSSStyleSheet;
 };
 
-const CssTree = ({ styleSheet }: CssTreeProps): ReactElement => {
+const CssRuleTree = ({ styleSheet }: CssRuleTreeProps): ReactElement => {
   const cssStyleRulesArr = Object.values(styleSheet.cssRules).filter(
     (cssRule) => cssRule.STYLE_RULE === 1
   ) as CSSStyleRule[];
@@ -41,4 +41,4 @@ const CssTree = ({ styleSheet }: CssTreeProps): ReactElement => {
   );
 };
 
-export default CssTree;
+export default CssRuleTree;

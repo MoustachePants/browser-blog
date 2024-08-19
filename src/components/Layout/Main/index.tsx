@@ -4,13 +4,14 @@ import IframePreview from "../../WebRender/IframePreview";
 import Tree from "../../UI/Tree";
 import DomTree from "../../WebRender/DomTree";
 import CodeEditor from "../../WebRender/CodeEditor";
-import CssTree from "../../WebRender/CssTree";
+import CssTree from "../../WebRender/CssRuleTree";
 import RenderTree from "../../WebRender/RenderTree";
 import BrowserWindow from "../BrowserWindow";
 import DisplayWindow from "../DisplayWindow";
 import removeHeadTag from "../../../utils/removeHeadTag";
 import CssomTree from "../../WebRender/CssomTree";
 import CSSOMTree from "../../WebRender/CssomTree";
+import CssRuleTree from "../../WebRender/CssRuleTree";
 
 const Main = () => {
   const defaultHtml = `<html>
@@ -25,14 +26,17 @@ const Main = () => {
     </body>
 </html>`;
 
-  const defaultCss = `.red-background {
+  const defaultCss = `body {
+  font-size: 12px;
+}
+  
+  .red-background {
   background-color: red;
 }
 
 .box, .x {
-  border: 0ch;
-}
-`;
+  border: 0px;
+}`;
 
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
   const [cssCode, setCssCode] = useState<string>(defaultCss);
@@ -234,7 +238,7 @@ const Main = () => {
       >
         {iframeDocument && (
           <Tree>
-            <CssTree styleSheet={iframeDocument.styleSheets[0]} />
+            <CssRuleTree styleSheet={iframeDocument.styleSheets[0]} />
           </Tree>
         )}
       </DisplayWindow>{" "}
@@ -247,7 +251,6 @@ const Main = () => {
         all of the paragraph elements <code>&lt;p&gt;</code> inside it will also
         get this declaration).
       </p>
-      <p>[CSSOM tree]</p>
       <DisplayWindow
         type={"tree"}
         title="Cssom Tree"
