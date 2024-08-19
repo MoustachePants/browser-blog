@@ -1,3 +1,68 @@
+/*.browser-window {*/
+/*  width: 100%;*/
+/*  aspect-ratio: 16/9;*/
+/*  max-width: 800px;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 8px;*/
+/*  overflow: hidden;*/
+/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*  margin: 0 auto;*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*}*/
+
+/*.browser-header {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: space-between;*/
+/*  background-color: #f1f1f1;*/
+/*  padding: 0.5rem 1rem;*/
+/*  border-bottom: 1px solid #ccc;*/
+/*}*/
+
+/*.browser-buttons {*/
+/*  display: flex;*/
+/*  gap: 0.5rem;*/
+/*}*/
+
+/*.browser-button {*/
+/*  width: 12px;*/
+/*  height: 12px;*/
+/*  border-radius: 50%;*/
+/*  background-color: #ff5f57; !* Red *!*/
+/*}*/
+
+/*.browser-button.yellow {*/
+/*  background-color: #ffbd2e; !* Yellow *!*/
+/*}*/
+
+/*.browser-button.green {*/
+/*  background-color: #27c93f; !* Green *!*/
+/*}*/
+
+/*.browser-url {*/
+/*  flex-grow: 1;*/
+/*  margin: 0 1rem;*/
+/*  padding: 0.25rem;*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 4px;*/
+/*  background-color: #fff;*/
+/*  color: #333;*/
+/*  text-align: left;*/
+/*  pointer-events: none;*/
+/*}*/
+
+/*.browser-refresh {*/
+/*  background-color: transparent;*/
+/*  border: none;*/
+/*  font-size: 1rem;*/
+/*  cursor: default;*/
+/*}*/
+
+/*.browser-content {*/
+/*  height: 100%;*/
+/*}*/
+
 .browser-window {
   width: 100%;
   aspect-ratio: 16/9;
@@ -61,4 +126,17 @@
 
 .browser-content {
   height: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .browser-window {
+    aspect-ratio: 9/16; /* Adjust to a more vertical ratio for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .browser-window {
+    aspect-ratio: 3/4; /* Further adjust to a more phone-like ratio */
+  }
 }

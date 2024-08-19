@@ -1,10 +1,46 @@
+/*.display-window {*/
+/*  !* width: 100%; *!*/
+/*  border: 1px solid #ccc;*/
+/*  border-radius: 8px;*/
+/*  overflow: hidden;*/
+/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/
+/*  !*min-height: 6rem;*!*/
+/*  margin-bottom: 1.5em;*/
+/*}*/
+
+/*.display-window-header {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: space-between;*/
+/*  background-color: #f1f1f1;*/
+/*  padding: 0.5rem 1rem;*/
+/*  border-bottom: 1px solid #ccc;*/
+/*  font-size: 0.8rem;*/
+/*  color: #777;*/
+/*}*/
+
+/*.reset-btn {*/
+/*  font-size: inherit;*/
+/*  font-family: inherit;*/
+/*  background-color: transparent;*/
+/*  border: none;*/
+/*  cursor: pointer;*/
+/*  color: inherit;*/
+/*}*/
+
+/*.react-transform-wrapper {*/
+/*  width: 100% !important;*/
+/*  height: 16rem !important;*/
+/*}*/
+
 .display-window {
   /* width: 100%; */
   border: 1px solid #ccc;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /*min-height: 6rem;*/
+  /* min-height: 6rem; */
+  margin-bottom: 1.5em;
 }
 
 .display-window-header {
@@ -31,3 +67,16 @@
   width: 100% !important;
   height: 16rem !important;
 }
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .react-transform-wrapper {
+    height: 24rem !important; /* Increase height for tablet-sized screens */
+  }
+}
+
+/*@media (max-width: 480px) {*/
+/*  .react-transform-wrapper {*/
+/*    height: 26rem !important; !* Further increase height for phone-sized screens *!*/
+/*  }*/
+/*}*/

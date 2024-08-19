@@ -95,10 +95,7 @@ const Main = () => {
         </cite>{" "}
         mdn web docs
       </p>
-      <p>
-        [graphical image - HTML+CSS &gt; (render engine) &gt; displayed web
-        page]
-      </p>
+      <img src="./Graph-removebg-preview.png" alt="Graph-preview" />
       <p>
         The browser rendering engine is the one in charge of turning HTML and
         CSS to visual web pages like we know and love in a split of a second.
@@ -119,9 +116,11 @@ const Main = () => {
         you must be familiar with at least basic knowledge of HTML and CSS in
         order to understand this article 🙂
       </p>
-      <h3>Step 0</h3>
-      <h4>Getting the resources</h4>
-      <p>At the beginning there is only a blank web page.</p>
+      <h3>Step 0 / Getting the resources</h3>
+      <p>
+        At the beginning there is only a blank web page. Hover / touch it and
+        you will reveal our fully rendered web page (spoiler!).
+      </p>
       <BrowserWindow title={"example"}>
         <IframePreview
           html={removeHeadTag(htmlCode)}
@@ -130,7 +129,7 @@ const Main = () => {
           mode="empty"
         />
       </BrowserWindow>
-      <p>Hover your mouse over it and you will reveal our rendered web page.</p>
+      <p></p>
       <p>
         The first step is the browser{" "}
         <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview">
@@ -144,8 +143,7 @@ const Main = () => {
         Now that we have all of the resources, we will now follow each step the
         browser goes through in order to render its content.
       </p>
-      <h3>Step 1a</h3>
-      <h4>The HTML step</h4>
+      <h3>Step 1a / Processing HTML</h3>
       <p>
         With the provided HTML file, the browser is using the Document Object
         Module (DOM) API to <strong>parse</strong> it, or simply, analyze and
@@ -165,7 +163,7 @@ const Main = () => {
       <p>
         This is our HTML code and the compatible DOM tree. You can edit the code
         to see the new DOM tree and also change the finished web page we will
-        render eventually.
+        render accordingly.
       </p>
       <DisplayWindow
         type={"code"}
@@ -179,7 +177,7 @@ const Main = () => {
           type="html"
         />
       </DisplayWindow>
-      <p>~Parsing using the DOM API~</p>
+      <center>~Parsing using the DOM API~</center>
       {iframeDocument && (
         <DisplayWindow
           type={"tree"}
@@ -191,8 +189,7 @@ const Main = () => {
           </Tree>
         </DisplayWindow>
       )}
-      <h3>Step 1b</h3>
-      <h4>The CSS step</h4>
+      <h3>Step 1b / Processing CSS</h3>
       <p>
         &gt; Note: This step begins after the browser reads the{" "}
         <code>&lt;link&gt;</code> tag (when parsing the HTML) and fetches the
@@ -289,8 +286,7 @@ const Main = () => {
         However, it&rsquo;s currently only supported by chrome and only specific
         features are available.
       </p>
-      <h3>Step 2</h3>
-      <h4>JavaScript&nbsp;</h4>
+      <h3>Step 2 / JavaScript</h3>
       <p>
         Next, the browser executes the JavaScript code. Actually, code execution
         starts whenever the HTML parser gets to the <code>&lt;script&gt;</code>{" "}
@@ -371,8 +367,7 @@ const Main = () => {
         instead of <code>opacity: 0</code> if possible. This way the browser
         will not render something the user can&rsquo;t see anyway.
       </p>
-      <h3>Step 4</h3>
-      <h4>Layout (also called &lsquo;reflow&rsquo;)</h4>
+      <h3>Step 4 / Layout (also called &lsquo;reflow&rsquo;)</h3>
       <p>
         Using the newly created render tree, the browser calculates the size and
         position of every visible element on the page. The process applies the
@@ -387,8 +382,7 @@ const Main = () => {
           mode="layout"
         />
       </BrowserWindow>
-      <h3>Step 5</h3>
-      <h4>Painting</h4>
+      <h3>Step 5 / Painting</h3>
       <p>
         The browser fills in the pixels based on the layout and the styles from
         the render tree.
