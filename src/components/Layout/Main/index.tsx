@@ -4,12 +4,10 @@ import IframePreview from "../../WebRender/IframePreview";
 import Tree from "../../UI/Tree";
 import DomTree from "../../WebRender/DomTree";
 import CodeEditor from "../../WebRender/CodeEditor";
-import CssTree from "../../WebRender/CssRuleTree";
 import RenderTree from "../../WebRender/RenderTree";
 import BrowserWindow from "../BrowserWindow";
 import DisplayWindow from "../DisplayWindow";
 import removeHeadTag from "../../../utils/removeHeadTag";
-import CssomTree from "../../WebRender/CssomTree";
 import CSSOMTree from "../../WebRender/CssomTree";
 import CssRuleTree from "../../WebRender/CssRuleTree";
 
@@ -342,7 +340,7 @@ const Main = () => {
           Using the DOM tree to select only the visible elements - for example,
           the <code>&lt;head&gt;</code> element will not be rendered by default
           (unless its <code>display: none</code> property is changed, apparently
-          you can do that&hellip;).
+          you can do that...).
         </li>
         <li>
           Using the CSSOM tree to attach each element with its calculated
@@ -379,7 +377,7 @@ const Main = () => {
         <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleRule">
           CssStyleRule
         </a>{" "}
-        (like cssMediaRule, cssKeyframeRule&hellip;).
+        (like cssMediaRule, cssKeyframeRule...).
       </p>
       <p>
         Note on performance: If hiding an element is needed - use{" "}
@@ -444,6 +442,17 @@ const Main = () => {
           </a>
         </li>
       </ul>
+      <p>
+        This whole article and its components are open-sourced on my{" "}
+        <a href="https://github.com/MoustachePants/browser">
+          GitHub repository.
+        </a>
+      </p>
+      <p>
+        Ⓒ{" "}
+        <a href="https://www.linkedin.com/in/elad-laor-a7701923b/">Elad Laor</a>
+        , 2024
+      </p>
     </article>
   );
 };
