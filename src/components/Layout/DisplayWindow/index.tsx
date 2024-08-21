@@ -5,7 +5,7 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 interface DisplayWindowProps {
   title: string;
   children: React.ReactNode;
-  onReset: () => void;
+  onReset?: () => void;
   type: "code" | "tree";
 }
 
@@ -19,9 +19,11 @@ const DisplayWindow: FC<DisplayWindowProps> = ({
     <div className="display-window">
       <div className="display-window-header">
         <span className="title-tag">{title}</span>
-        <button className="reset-btn" onClick={onReset}>
-          Reset
-        </button>
+        {onReset && (
+          <button className="reset-btn" onClick={onReset}>
+            Reset
+          </button>
+        )}
       </div>
       {type === "tree" && (
         <TransformWrapper

@@ -7,8 +7,6 @@ type DomTreeNodesProps = {
 };
 
 const DomTreeNodes = ({ node }: DomTreeNodesProps): ReactElement => {
-  console.log(node.tag, node.tagName);
-
   return (
     <li key={Math.random()} title={node.tagName || node.tag}>
       <div className="node-container">

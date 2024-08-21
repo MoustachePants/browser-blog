@@ -30,8 +30,8 @@ const CssRuleTree = ({ styleSheet }: CssRuleTreeProps): ReactElement => {
                 </li>
                 <li>
                   <div className="node-container style-node">
-                    {rule.style.cssText.split(";").map((line) => (
-                      <p>{line}</p>
+                    {rule.style.cssText.split(";").map((line, index) => (
+                      <p key={index}>{line}</p>
                     ))}
                   </div>
                 </li>

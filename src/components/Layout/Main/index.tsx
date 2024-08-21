@@ -198,11 +198,7 @@ const Main = () => {
       </DisplayWindow>
       <center>~Parsing using the DOM API~</center>
       {iframeDocument && iframeUpdate && (
-        <DisplayWindow
-          type={"tree"}
-          title="Dom Tree"
-          onReset={() => console.log("reset")}
-        >
+        <DisplayWindow type={"tree"} title="Dom Tree">
           <Tree rerender={iframeUpdate}>
             <DomTree documentElement={iframeDocument.documentElement} />
           </Tree>
@@ -240,11 +236,7 @@ const Main = () => {
         The CSS rules object is initially created, and each rule has a selector
         and its declarations in it:
       </p>
-      <DisplayWindow
-        type={"tree"}
-        title="Css Rules Tree"
-        onReset={() => console.log("reset")}
-      >
+      <DisplayWindow type={"tree"} title="Css Rules Tree">
         {iframeDocument && iframeUpdate && (
           <Tree rerender={iframeUpdate}>
             <CssRuleTree styleSheet={iframeDocument.styleSheets[0]} />
@@ -260,11 +252,7 @@ const Main = () => {
         all of the paragraph elements <code>&lt;p&gt;</code> inside it will also
         get this declaration).
       </p>
-      <DisplayWindow
-        type={"tree"}
-        title="CSSOM Tree"
-        onReset={() => console.log("reset")}
-      >
+      <DisplayWindow type={"tree"} title="CSSOM Tree">
         {iframeDocument && iframeUpdate && (
           <Tree rerender={iframeUpdate}>
             <CSSOMTree stylesheet={iframeDocument.styleSheets[0]} />
@@ -369,11 +357,7 @@ const Main = () => {
         .
       </p>
       {iframeDocument && iframeUpdate && (
-        <DisplayWindow
-          title={"Render Tree"}
-          type={"tree"}
-          onReset={() => console.log("reset")}
-        >
+        <DisplayWindow title={"Render Tree"} type={"tree"}>
           <Tree rerender={iframeUpdate}>
             <RenderTree
               styleSheet={iframeDocument.styleSheets[0]}
