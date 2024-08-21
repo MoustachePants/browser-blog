@@ -1,15 +1,11 @@
 import "./App.css";
-
-import BlogHeader from "../archive/Header";
 import Main from "./components/Layout/Main";
-import useCodeMirror from "./hooks/useCodeMirror";
-import { useCodeEditor } from "./hooks/useCodeEditor";
-import { html } from "@codemirror/lang-html";
+import ProgressBar from "./components/UI/ProgressBar";
 
 function App() {
   return (
     <div className="App">
-      {/*<BlogHeader />*/}
+      <ProgressBar />
       <Main />
     </div>
   );

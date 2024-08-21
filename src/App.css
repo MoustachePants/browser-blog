@@ -7,22 +7,24 @@ html {
   height: 100%;
 }
 
-body {
-  height: 100%;
-  background-color: #f9f9f9;
-  margin: 0;
-  padding: 0;
-  color: #2c3e50;
-  font-size: 16px;
-}
-
 #root {
   height: 100%;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.8;
+  color: #333;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  font-size: 16px;
 }
 
 .App {
   height: 100%;
   margin: auto;
+  padding: 20px;
   /*background-color: rgba(102, 102, 102, 0.24);*/
   /*max-width: 768px;*/
   /*display: flex;*/

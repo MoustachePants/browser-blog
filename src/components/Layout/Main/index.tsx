@@ -10,6 +10,7 @@ import DisplayWindow from "../DisplayWindow";
 import removeHeadTag from "../../../utils/removeHeadTag";
 import CSSOMTree from "../../WebRender/CssomTree";
 import CssRuleTree from "../../WebRender/CssRuleTree";
+import ProgressBar from "../../UI/ProgressBar";
 
 const Main = () => {
   const defaultHtml = `<html>
