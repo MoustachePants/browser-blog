@@ -18,18 +18,18 @@ const RenderTreeNode: React.FC<RenderTreeNodeProps> = ({ treeNode }) => {
         <span>{treeNode.name}</span>
         {treeNode.textContent && <p>{treeNode.textContent}</p>}
         {treeNode.styles && Object.keys(treeNode.styles).length > 0 && (
-          <li className="node-style-properties">
+          <main className="node-style-properties">
             <div>
               {Object.entries(treeNode.styles).map(
                 ([property, value], index) => (
-                  <span>
+                  <span key={Math.random()}>
                     {property}: {value}
                     <br />
                   </span>
                 )
               )}
             </div>
-          </li>
+          </main>
         )}
       </div>
       {treeNode.children && treeNode.children.length > 0 && (

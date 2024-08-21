@@ -34,20 +34,53 @@ const IframePreview = ({
   const compressedHtml = compressCode(html); // to not include line breaks in html as nodes in node tree
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // update html
+  // // update html
+  // useEffect(() => {
+  //   if (iframeRef.current) {
+  //     const iframeDocument = iframeRef.current.contentDocument!;
+  //     iframeDocument.open();
+  //     iframeDocument.write(compressedHtml);
+  //     iframeDocument.close();
+  //   }
+  // }, [compressedHtml]);
+  //
+  // // update css
+  // useEffect(() => {
+  //   if (iframeRef.current) {
+  //     const iframeDocument = iframeRef.current.contentDocument!;
+  //
+  //     // remove last style if exists
+  //     iframeDocument.querySelector("style")?.remove();
+  //
+  //     // insert new style element
+  //     const styleElement = iframeDocument.createElement("style");
+  //     styleElement.innerHTML = css;
+  //     iframeDocument.head.appendChild(styleElement);
+  //
+  //     //if mode layout
+  //     if (mode === "layout") {
+  //       const layoutStyleElement = iframeDocument.createElement("style");
+  //       layoutStyleElement.innerHTML = layoutCssStylesheet;
+  //       iframeDocument.head.appendChild(layoutStyleElement);
+  //     }
+  //   }
+  // }, [css, html]);
+  //
+  // useEffect(() => {
+  //   if (!iframeRef.current) return;
+  //   const iframeDocument = iframeRef.current.contentDocument!;
+  //   setDocument(iframeDocument);
+  // }, [html, css, iframeRef, setDocument]);
+
+  // Single effect to update the iframe content
   useEffect(() => {
     if (iframeRef.current) {
       const iframeDocument = iframeRef.current.contentDocument!;
+
+      // Reset iframe content
       iframeDocument.open();
       iframeDocument.write(compressedHtml);
       iframeDocument.close();
-    }
-  }, [compressedHtml]);
-
-  // update css
-  useEffect(() => {
-    if (iframeRef.current) {
-      const iframeDocument = iframeRef.current.contentDocument!;
 
       // remove last style if exists
       iframeDocument.querySelector("style")?.remove();
@@ -63,14 +96,14 @@ const IframePreview = ({
         layoutStyleElement.innerHTML = layoutCssStylesheet;
         iframeDocument.head.appendChild(layoutStyleElement);
       }
-    }
-  }, [css, html]);
 
-  useEffect(() => {
-    if (!iframeRef.current) return;
-    const iframeDocument = iframeRef.current.contentDocument!;
-    setDocument(iframeDocument);
-  }, [html, css, iframeRef, setDocument]);
+      // Set the document object for the parent component
+      setDocument(iframeDocument);
+
+      // Trigger a manual reload of the iframe content to force update
+      // iframeRef.current.contentWindow!.location.reload();
+    }
+  }, [compressedHtml, css, mode, setDocument]);
 
   let className: string;
   switch (mode) {

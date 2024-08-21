@@ -19,12 +19,12 @@ const Main = () => {
     </head>
     <body>
         <h1>This is a Heading</h1>
-        <!--  html comment -->
         <p class="red-background">This is a paragraph.</p>
     </body>
 </html>`;
 
   const defaultCss = `body {
+  margin: 0;
   font-size: 12px;
 }
   
@@ -39,6 +39,7 @@ const Main = () => {
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
   const [cssCode, setCssCode] = useState<string>(defaultCss);
   const [iframeDocument, setIframeDocument] = useState<Document>();
+  const [iframeUpdate, setIframeUpdate] = useState<number>(0);
 
   const changeHtmlHandler = (html: string) => {
     setHtmlCode(html);
@@ -54,6 +55,10 @@ const Main = () => {
 
   const resetCssHandler = () => {
     setCssCode(defaultCss);
+  };
+  const updateIframeDocument = (newDocument: Document) => {
+    setIframeDocument(newDocument);
+    setIframeUpdate((prev) => prev + 1); // Trigger re-render
   };
 
   return (
@@ -133,7 +138,7 @@ const Main = () => {
         <IframePreview
           html={removeHeadTag(htmlCode)}
           css={cssCode}
-          setDocument={setIframeDocument}
+          setDocument={updateIframeDocument}
           mode="empty"
         />
       </BrowserWindow>
@@ -186,13 +191,13 @@ const Main = () => {
         />
       </DisplayWindow>
       <center>~Parsing using the DOM API~</center>
-      {iframeDocument && (
+      {iframeDocument && iframeUpdate && (
         <DisplayWindow
           type={"tree"}
           title="Dom Tree"
           onReset={() => console.log("reset")}
         >
-          <Tree>
+          <Tree rerender={iframeUpdate}>
             <DomTree documentElement={iframeDocument.documentElement} />
           </Tree>
         </DisplayWindow>
@@ -231,11 +236,11 @@ const Main = () => {
       </p>
       <DisplayWindow
         type={"tree"}
-        title="Css Tree"
+        title="Css Rules Tree"
         onReset={() => console.log("reset")}
       >
-        {iframeDocument && (
-          <Tree>
+        {iframeDocument && iframeUpdate && (
+          <Tree rerender={iframeUpdate}>
             <CssRuleTree styleSheet={iframeDocument.styleSheets[0]} />
           </Tree>
         )}
@@ -251,11 +256,11 @@ const Main = () => {
       </p>
       <DisplayWindow
         type={"tree"}
-        title="Cssom Tree"
+        title="CSSOM Tree"
         onReset={() => console.log("reset")}
       >
-        {iframeDocument && (
-          <Tree>
+        {iframeDocument && iframeUpdate && (
+          <Tree rerender={iframeUpdate}>
             <CSSOMTree stylesheet={iframeDocument.styleSheets[0]} />
           </Tree>
         )}
@@ -357,13 +362,13 @@ const Main = () => {
         </a>
         .
       </p>
-      {iframeDocument && (
+      {iframeDocument && iframeUpdate && (
         <DisplayWindow
           title={"Render Tree"}
           type={"tree"}
           onReset={() => console.log("reset")}
         >
-          <Tree>
+          <Tree rerender={iframeUpdate}>
             <RenderTree
               styleSheet={iframeDocument.styleSheets[0]}
               documentElement={iframeDocument.documentElement}
@@ -396,7 +401,7 @@ const Main = () => {
         <IframePreview
           html={removeHeadTag(htmlCode)}
           css={cssCode}
-          setDocument={setIframeDocument}
+          setDocument={updateIframeDocument}
           mode="layout"
         />
       </BrowserWindow>
@@ -409,7 +414,7 @@ const Main = () => {
         <IframePreview
           html={removeHeadTag(htmlCode)}
           css={cssCode}
-          setDocument={setIframeDocument}
+          setDocument={updateIframeDocument}
           mode="paint"
         />
       </BrowserWindow>

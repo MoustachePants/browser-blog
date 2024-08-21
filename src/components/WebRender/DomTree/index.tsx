@@ -7,7 +7,6 @@ type DomTreeNodesProps = {
 };
 
 const DomTree = ({ documentElement }: DomTreeNodesProps): ReactElement => {
-  // console.log(node);
   const documentNode = getDomTree(documentElement);
 
   return <DomTreeNodes node={documentNode} />;

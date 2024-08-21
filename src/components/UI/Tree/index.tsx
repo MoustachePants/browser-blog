@@ -3,6 +3,7 @@ import { ReactElement, useEffect, useRef } from "react";
 
 type TreeProps = {
   children: ReactElement;
+  rerender: number;
 };
 
 const Tree = ({ children }: TreeProps) => {
