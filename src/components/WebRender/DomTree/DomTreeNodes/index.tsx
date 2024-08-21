@@ -1,3 +1,4 @@
+import "./DomTreeNodes.css";
 import { ReactElement } from "react";
 import DomTreeNode from "../../../../types/DomTreeNode";
 
@@ -6,12 +7,22 @@ type DomTreeNodesProps = {
 };
 
 const DomTreeNodes = ({ node }: DomTreeNodesProps): ReactElement => {
+  console.log(node.tag, node.tagName);
+
   return (
     <li key={Math.random()} title={node.tagName || node.tag}>
       <div className="node-container">
-        <span>{node.elementType}</span>
-        <span>{node.tagName || node.tag}</span>
-        {(node.children.length === 0 && node.content) || ``}
+        <h1>{node.elementType}</h1>
+        {node.tag && <strong>{"<" + node.tag + ">"}</strong>}
+        {node.tagName && <strong>{node.tagName}</strong>}
+        {(node.children.length === 0 && (
+          <>
+            <br />
+            <br />
+            <p>{node.content}</p>
+          </>
+        )) ||
+          ``}
       </div>
       {node.children.length > 0 && (
         <ul>

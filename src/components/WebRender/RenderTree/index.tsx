@@ -64,7 +64,7 @@ const RenderTree = ({ styleSheet, documentElement }: RenderTreeProps) => {
   return (
     <li className="render-tree-container" title="Document">
       <div className="node-container">
-        <span>Document</span>
+        <h1>Document</h1>
       </div>
       {renderTree?.children && renderTree.children.length > 0 && (
         <ul>

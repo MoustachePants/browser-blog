@@ -108,7 +108,7 @@ const CSSOMTree: React.FC<CSSOMTreeProps> = ({ stylesheet }) => {
     return nodes.map((node, index) => (
       <li key={index} className="stylesheet">
         <div className="node-container">
-          <span>{node.selectorText}</span>
+          <h1>{node.selectorText}</h1>
         </div>
         {(Object.keys(node.properties).length > 0 ||
           node.children.length > 0) && (
@@ -116,17 +116,17 @@ const CSSOMTree: React.FC<CSSOMTreeProps> = ({ stylesheet }) => {
             {Object.keys(node.properties).length > 0 && (
               <li className="node-style-properties">
                 <div className="node-container">
-                  <span>Style</span>
-                  <br />
-                  {Object.entries(node.properties).map(
-                    ([property, value], propIndex) => (
-                      <React.Fragment key={propIndex}>
-                        {property}: {value}
-                        {propIndex <
-                          Object.entries(node.properties).length - 1 && <br />}
-                      </React.Fragment>
-                    )
-                  )}
+                  {/*<strong>Style</strong>*/}
+                  {/*<br />*/}
+                  <div className="cssom-styles-container css-rule-node">
+                    {Object.entries(node.properties).map(
+                      ([property, value], propIndex) => (
+                        <p key={propIndex}>
+                          {property}: {value}
+                        </p>
+                      )
+                    )}
+                  </div>
                 </div>
               </li>
             )}

@@ -1,3 +1,4 @@
+import "./CssRuleTree.css";
 import React, { ReactElement } from "react";
 
 type CssRuleTreeProps = {
@@ -12,24 +13,26 @@ const CssRuleTree = ({ styleSheet }: CssRuleTreeProps): ReactElement => {
   return (
     <li className={"stylesheet"}>
       <div className="node-container">
-        <span>{"CSSStyleSheet"}</span>
+        <h1>{"CSSStyleSheet"}</h1>
       </div>
       {cssStyleRulesArr.length > 0 && (
         <ul>
           {cssStyleRulesArr.map((rule, index) => (
             <li key={Math.random()} className="css-tree-rule">
               <div className="node-container">
-                <span>CssStyleRule #{index + 1}</span>
+                <h1>CssStyleRule #{index + 1}</h1>
               </div>
               <ul>
                 <li>
                   <div className="node-container">
-                    <span>{rule.selectorText}</span>
+                    <strong>{rule.selectorText}</strong>
                   </div>
                 </li>
                 <li>
-                  <div className="node-container">
-                    <span>{rule.style.cssText}</span>
+                  <div className="node-container css-rule-node">
+                    {rule.style.cssText.split(";").map((line) => (
+                      <p>{line}</p>
+                    ))}
                   </div>
                 </li>
               </ul>

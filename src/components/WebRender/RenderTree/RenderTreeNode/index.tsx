@@ -15,17 +15,16 @@ const Index: React.FC<RenderTreeNodeProps> = ({ treeNode }) => {
   return (
     <li title={treeNode.name}>
       <div className="node-container">
-        <span>{treeNode.name}</span>
+        <h1>{treeNode.name}</h1>
         {treeNode.textContent && <p>{treeNode.textContent}</p>}
         {treeNode.styles && Object.keys(treeNode.styles).length > 0 && (
-          <main className="node-style-properties">
+          <main className="css-rule-node">
             <div>
               {Object.entries(treeNode.styles).map(
                 ([property, value], index) => (
-                  <span key={Math.random()}>
+                  <p key={Math.random()}>
                     {property}: {value}
-                    <br />
-                  </span>
+                  </p>
                 )
               )}
             </div>

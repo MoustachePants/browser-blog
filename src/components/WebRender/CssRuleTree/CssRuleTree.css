@@ -1,0 +1,18 @@
+.node-container {
+  max-width: 300px;
+  width: 100%;
+}
+
+.node-container p {
+  white-space: initial;
+}
+
+.css-rule-node {
+  text-align: left;
+  width: 300px;
+  background-color: rgba(255, 198, 122, 0.2);
+}
+
+.css-rule-node p {
+  margin-bottom: unset;
+}
