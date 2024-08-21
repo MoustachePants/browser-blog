@@ -1,5 +1,5 @@
 import "./IframePreview.css";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import compressCode from "../../../utils/compressCode";
 
 type IframePreviewProps = {
@@ -9,21 +9,23 @@ type IframePreviewProps = {
   mode: "empty" | "layout" | "paint";
 };
 
-const layoutCssStylesheet =
-  "body:not(:hover), body:not(:hover) * {\n" +
-  "    outline: 1px dashed #000 !important;\n" +
-  "    display: block !important;\n" +
-  "    background-color: transparent !important;\n" +
-  "    color: transparent !important;\n" +
-  "    box-sizing: border-box !important;\n" +
-  "    transition: all 0.2s ease-in-out !important;\n" +
-  "    user-select: none !important; /* Make text unselectable */\n" +
-  "}\n" +
-  "\n" +
-  "/* Add transition effect */\n" +
-  "body {\n" +
-  "    transition: all 0.2s ease-in-out !important;\n" +
-  "}";
+const layoutCssStylesheet = `body:not(:hover), body:not(:hover) * {
+    outline: 1px dashed #000 !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    color: transparent !important;
+    transition: all 0.2s ease-in-out !important;
+    user-select: none !important; /* Make text unselectable */
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: static !important;
+    border-radius: 0 !important;
+    border: none !important;
+}`;
 
 const IframePreview = ({
   html,

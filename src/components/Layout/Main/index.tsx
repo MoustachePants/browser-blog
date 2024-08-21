@@ -10,32 +10,37 @@ import DisplayWindow from "../DisplayWindow";
 import removeHeadTag from "../../../utils/removeHeadTag";
 import CSSOMTree from "../../WebRender/CssomTree";
 import CssRuleTree from "../../WebRender/CssRuleTree";
-import ProgressBar from "../../UI/ProgressBar";
 
 const Main = () => {
-  const defaultHtml = `<html>
-    <head>
-        <title>Page Title</title>
-        <link rel="stylesheet" href="stylesheet.css">
-    </head>
-    <body>
-        <h1>This is a Heading</h1>
-        <p class="red-background">This is a paragraph.</p>
-    </body>
+  const defaultHtml = `<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Web Page</title>
+</head>
+<body>
+    <h1>Simple Web Page</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum enim eum expedita omnis quam quibusdam temporibus. Culpa nam soluta voluptatum!</p>
+</body>
 </html>`;
 
-  const defaultCss = `body {
-  margin: 0;
-  font-size: 12px;
-}
-  
-  .red-background {
-  background-color: red;
-}
+  const defaultCss = `  body {
+  background-color: #13364d;
+      color: #f2f2f2;
+      margin: 0;
+      padding: 2rem;
+      font-size: 1.2rem;
+    }
 
-.box, .x {
-  border: 0px;
-}`;
+    h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      line-height: 1.6;
+    }`;
 
   const [htmlCode, setHtmlCode] = useState<string>(defaultHtml);
   const [cssCode, setCssCode] = useState<string>(defaultCss);

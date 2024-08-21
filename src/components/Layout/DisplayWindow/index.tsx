@@ -24,7 +24,11 @@ const DisplayWindow: FC<DisplayWindowProps> = ({
         </button>
       </div>
       {type === "tree" && (
-        <TransformWrapper initialScale={0.4} minScale={0.6} centerOnInit={true}>
+        <TransformWrapper
+          initialScale={0.25}
+          minScale={0.25}
+          centerOnInit={true}
+        >
           <TransformComponent>{children}</TransformComponent>
         </TransformWrapper>
       )}
