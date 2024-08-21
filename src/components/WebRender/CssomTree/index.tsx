@@ -114,11 +114,11 @@ const CSSOMTree: React.FC<CSSOMTreeProps> = ({ stylesheet }) => {
           node.children.length > 0) && (
           <ul>
             {Object.keys(node.properties).length > 0 && (
-              <li className="node-style-properties">
-                <div className="node-container">
+              <li>
+                <div className="node-container style-node">
                   {/*<strong>Style</strong>*/}
                   {/*<br />*/}
-                  <div className="cssom-styles-container css-rule-node">
+                  <div className="cssom-styles-container">
                     {Object.entries(node.properties).map(
                       ([property, value], propIndex) => (
                         <p key={propIndex}>

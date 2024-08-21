@@ -18,7 +18,7 @@ const Index: React.FC<RenderTreeNodeProps> = ({ treeNode }) => {
         <h1>{treeNode.name}</h1>
         {treeNode.textContent && <p>{treeNode.textContent}</p>}
         {treeNode.styles && Object.keys(treeNode.styles).length > 0 && (
-          <main className="css-rule-node">
+          <main className="style-node">
             <div>
               {Object.entries(treeNode.styles).map(
                 ([property, value], index) => (

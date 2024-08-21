@@ -29,7 +29,7 @@ const CssRuleTree = ({ styleSheet }: CssRuleTreeProps): ReactElement => {
                   </div>
                 </li>
                 <li>
-                  <div className="node-container css-rule-node">
+                  <div className="node-container style-node">
                     {rule.style.cssText.split(";").map((line) => (
                       <p>{line}</p>
                     ))}
