@@ -11,7 +11,7 @@ type RenderTreeNodeProps = {
   treeNode: TreeNodeType;
 };
 
-const RenderTreeNode: React.FC<RenderTreeNodeProps> = ({ treeNode }) => {
+const Index: React.FC<RenderTreeNodeProps> = ({ treeNode }) => {
   return (
     <li title={treeNode.name}>
       <div className="node-container">
@@ -35,7 +35,7 @@ const RenderTreeNode: React.FC<RenderTreeNodeProps> = ({ treeNode }) => {
       {treeNode.children && treeNode.children.length > 0 && (
         <ul>
           {treeNode.children.map((child, index) => (
-            <RenderTreeNode treeNode={child} key={index} />
+            <Index treeNode={child} key={index} />
           ))}
         </ul>
       )}
@@ -43,4 +43,4 @@ const RenderTreeNode: React.FC<RenderTreeNodeProps> = ({ treeNode }) => {
   );
 };
 
-export default RenderTreeNode;
+export default Index;
