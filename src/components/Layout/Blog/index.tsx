@@ -438,12 +438,6 @@ const Main = () => {
         </li>
       </ul>
       <p>
-        This whole article and its components are open-sourced on my{" "}
-        <a href="https://github.com/MoustachePants/browser">
-          GitHub repository.
-        </a>
-      </p>
-      <p>
         Ⓒ{" "}
         <a href="https://www.linkedin.com/in/elad-laor-a7701923b/">Elad Laor</a>
         , 2024
