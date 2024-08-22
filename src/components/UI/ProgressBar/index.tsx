@@ -3,6 +3,7 @@ import { UIEventHandler, useEffect, useState } from "react";
 
 const ProgressBar = () => {
   const [scrollYPosition, setScrollYPosition] = useState<number>(0);
+  const [scrollHeight, setScrollHeight] = useState<number>(0);
 
   const handleScroll = () => {
     const newScrollYPosition = window.scrollY;
@@ -16,11 +17,12 @@ const ProgressBar = () => {
     };
   }, []);
 
-  const body = document.body;
-  const html = document.documentElement;
-  const scrollHeight =
-    document.documentElement.scrollHeight -
-    document.documentElement.clientHeight;
+  useEffect(() => {
+    setScrollHeight(
+      document.documentElement.scrollHeight -
+        document.documentElement.clientHeight
+    );
+  }, []);
 
   return (
     <div className="progress-bar-container">

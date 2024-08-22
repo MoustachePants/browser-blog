@@ -1,10 +1,13 @@
-import { ClientOnly } from "./client";
+"use client";
+import ProgressBar from "../../components/UI/ProgressBar";
+import Main from "../../components/Layout/Main";
+import "./Dev.css";
 
-export function generateStaticParams() {
-  return [{ slug: [""] }];
-}
-
-// `app/page.tsx` is the UI for the `/` URL
 export default function Page() {
-  return <ClientOnly />;
+  return (
+    <>
+      <ProgressBar />
+      <Main />
+    </>
+  );
 }

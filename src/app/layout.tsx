@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { Nanum_Gothic } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Browser Render Made Easy",
   description: "Answering how the browser render's web pages",
 };
+
+const nanum_gothic = Nanum_Gothic({ weight: "400", subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -11,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={nanum_gothic.className}>
       {/* <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

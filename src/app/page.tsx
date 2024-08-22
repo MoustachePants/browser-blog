@@ -1,5 +1,3 @@
-// import { ClientOnly } from "./[[...slug]]/client";
-
 export function generateStaticParams() {
   return [{ slug: [""] }];
 }

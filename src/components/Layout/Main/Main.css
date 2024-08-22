@@ -95,7 +95,7 @@ code {
   background-color: #f8f8f8;
   padding: 0 4px;
   border-radius: 4px;
-  font-family: "Courier New", monospace;
+  font-family: monospace;
   word-wrap: break-word;
   white-space: pre-wrap;
   display: inline-block;
