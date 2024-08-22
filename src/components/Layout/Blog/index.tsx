@@ -5,8 +5,8 @@ import Tree from "../../UI/Tree";
 import DomTree from "../../WebRender/DomTree";
 import CodeEditor from "../../WebRender/CodeEditor";
 import RenderTree from "../../WebRender/RenderTree";
-import BrowserWindow from "../BrowserWindow";
-import DisplayWindow from "../DisplayWindow";
+import BrowserWindow from "../../UI/BrowserWindow";
+import DisplayWindow from "../../UI/DisplayWindow";
 import removeHeadTag from "../../../utils/removeHeadTag";
 import CSSOMTree from "../../WebRender/CssomTree";
 import CssRuleTree from "../../WebRender/CssRuleTree";
@@ -71,7 +71,7 @@ const Main = () => {
     <article className="blog-main-container">
       <h1 className="blog-main-title">Browser Render Made Easy</h1>
       <h2 className="blog-sub-title">
-        Trying to explain hard stuff the simple way
+        Explaining the complex magic behind every web page
       </h2>
       <ul className="header-details">
         <li>

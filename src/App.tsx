@@ -1,5 +1,5 @@
 import "./App.css";
-import Main from "./components/Layout/Main";
+import Main from "./components/Layout/Blog";
 import ProgressBar from "./components/UI/ProgressBar";
 
 function App() {
