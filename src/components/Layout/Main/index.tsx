@@ -29,11 +29,11 @@ const Main = () => {
       color: #f2f2f2;
       margin: 0;
       padding: 2rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     h1 {
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight: 300;
       margin-bottom: 1rem;
     }

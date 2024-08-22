@@ -8,7 +8,7 @@
 }
 
 .progress-bar {
-  /*width: 50px;*/
+  width: 0;
   background-color: #e74c3c;
   height: 100%;
   border-bottom-right-radius: 10000px;
