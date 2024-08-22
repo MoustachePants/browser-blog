@@ -138,7 +138,7 @@ li {
 }
 
 .tree {
-  font-family: "Courier New", monospace;
+  font-family: monospace;
   line-height: 1.5;
   overflow-x: auto;
   white-space: nowrap;

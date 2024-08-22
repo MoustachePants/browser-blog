@@ -107,8 +107,9 @@
   width: 100%;
 }
 
-.node-container p {
+.node-container * {
   white-space: initial;
+  overflow-wrap: break-word;
 }
 
 .style-node {
