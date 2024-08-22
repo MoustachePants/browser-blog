@@ -114,7 +114,7 @@ const Main = () => {
         </cite>{" "}
         mdn web docs
       </p>
-      <img src="./Graph-removebg-preview.png" alt="Graph-preview" />
+      <img src={"./Graph-removebg-preview.png"} alt="Graph-preview" />
       <p>
         The browser rendering engine is the one in charge of turning HTML and
         CSS to visual web pages like we know and love in a split of a second.

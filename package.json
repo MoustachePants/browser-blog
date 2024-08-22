@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "@codemirror/commands": "^6.6.0",
@@ -14,16 +14,17 @@
     "@codemirror/lang-html": "^6.4.9",
     "@codemirror/state": "^6.4.1",
     "@codemirror/view": "^6.28.0",
-    "codemirror": "^6.0.1",
-    "react": "19.0.0-rc-1d989965-20240821",
-    "react-dom": "19.0.0-rc-1d989965-20240821",
-    "react-zoom-pan-pinch": "^3.4.4",
     "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
+    "@types/react-dom": "npm:types-react-dom@rc",
+    "codemirror": "^6.0.1",
+    "next": "^14.2.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-zoom-pan-pinch": "^3.4.4"
   },
   "devDependencies": {
+    "@types/node": "22.5.0",
     "@vitejs/plugin-react": "^3.1.0",
-    "typescript": "^4.9.3",
-    "vite": "^4.1.0"
+    "typescript": "^4.9.3"
   }
 }
