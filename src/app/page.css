@@ -38,6 +38,18 @@ body {
   font-size: 5rem;
 }
 
+.links {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.4rem;
+  padding-left: 1rem;
+}
+
+.links a img {
+  aspect-ratio: 1 1;
+  width: 2rem;
+}
+
 #about p {
   font-size: 1.2rem;
   line-height: 1.7rem;

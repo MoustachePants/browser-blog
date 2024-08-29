@@ -1,24 +1,35 @@
-import Head from "next/head";
-import { Metadata } from "next";
 import "./page.css";
+import Ropes from "../components/style/Ropes";
 
 export default function Page() {
   return (
     <div className="home-page-container">
+      {/* <Ropes /> */}
       <main>
         <section id="about">
           <h1>Welcome!</h1>
           <p>
-            My name is Elad Laor, and I'm a full-stack developer based in Tel
-            Aviv, Israel. I've worked on a diverse range of projects, from
-            airplane simulators to fully designed websites, with a strong focus
-            on creating clean and refined interfaces. My goal is to build
-            solutions that not only look great but also deliver a seamless and
-            intuitive user experience.
+            My name is <strong>Elad Laor</strong>, and I'm a full-stack
+            developer based in <strong>Tel Aviv, Israel</strong>. I've worked on
+            a diverse range of projects, from airplane simulators to fully
+            designed websites, with a strong focus on creating clean and refined
+            interfaces. My goal is to build solutions that not only look great
+            but also deliver a seamless and intuitive user experience.
           </p>
+          <div className="links">
+            <a href="mailto:elad222@gmail.com">
+              <img src="./icons/email.png" alt="email-icon" />
+            </a>
+            <a href="https://github.com/MoustachePants">
+              <img src="./icons/github.png" alt="github-icon" />
+            </a>
+            <a href="https://www.linkedin.com/in/elad-laor-a7701923b/">
+              <img src="./icons/linkedin.png" alt="linkedin-icon" />
+            </a>
+          </div>
         </section>
         <section id="projects">
-          <h2>Projects</h2>
+          <h2>Recent Projects</h2>
           <a className="project">
             <h3>Bird's Flight Simulator</h3>
             <p>

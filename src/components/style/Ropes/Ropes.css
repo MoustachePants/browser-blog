@@ -1,0 +1,38 @@
+.rails-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.rail {
+  width: 100%;
+  height: 500px;
+  overflow: hidden;
+  position: relative;
+}
+svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.rail path {
+  fill: none;
+  stroke: #333;
+  stroke-width: 4;
+  stroke-dasharray: 1000; /* Length of the path */
+  stroke-dashoffset: 1000; /* Length of the path */
+  animation: draw 7s linear infinite;
+}
+@keyframes draw {
+  0% {
+    stroke-dashoffset: 1000; /* Start position */
+  }
+  50% {
+    stroke-dashoffset: 0; /* Draw to the end */
+  }
+  100% {
+    stroke-dashoffset: -1000; /* Move the line to the left */
+  }
+}
