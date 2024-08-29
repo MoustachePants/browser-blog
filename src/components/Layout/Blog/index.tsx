@@ -1,3 +1,4 @@
+"use client";
 import "./Main.css";
 import { useState } from "react";
 import IframePreview from "../../WebRender/IframePreview";

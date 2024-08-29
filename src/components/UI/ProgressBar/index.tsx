@@ -1,3 +1,4 @@
+"use client";
 import "./ProgressBar.css";
 import { UIEventHandler, useEffect, useState } from "react";
 

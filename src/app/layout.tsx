@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Nanum_Gothic } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "Browser Render Made Easy",
-  description: "Answering how the browser render's web pages",
+  title: "MoustachePants",
+  description: "Elad Laor's portfolio",
 };
 
 const nanum_gothic = Nanum_Gothic({ weight: "400", subsets: ["latin"] });
