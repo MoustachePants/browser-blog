@@ -39,7 +39,7 @@ export default function Page() {
             </div>
             <p>
               Every bird has its own fligt control system, pilot it above
-              Israel's sky. Make sure to try the "Bird's Eye View"!
+              Israel's sky online. Make sure to try the "Bird's Eye View"!
             </p>
           </a>
           <a className="project" href="https://thesprings.netlify.app/">
