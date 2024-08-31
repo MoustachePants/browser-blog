@@ -31,11 +31,13 @@ export default function Page() {
           <a className="project" href="https://birds-simulator.netlify.app/">
             <div className="project-header">
               <h3>Bird's Flight Simulator</h3>
-              <img
-                src="./icons/desktop.png"
-                alt="desktop"
-                title="desktop compatibility"
-              />
+              <div className="project-header-icons-container">
+                <img
+                  src="./icons/desktop.png"
+                  alt="desktop"
+                  title="desktop compatibility"
+                />
+              </div>
             </div>
             <p>
               Every bird has its own fligt control system, pilot it above
@@ -45,17 +47,19 @@ export default function Page() {
           <a className="project" href="https://thesprings.netlify.app/">
             <div className="project-header">
               <h3>Israel's Natural Springs Library</h3>
-              <img
-                src="./icons/desktop.png"
-                alt="desktop"
-                title="desktop compatibility"
-              />
-              <img
-                src="./icons/mobile.png"
-                alt="mobile"
-                title="mobile compatibility"
-                id="mobile-icon"
-              />
+              <div className="project-header-icons-container">
+                <img
+                  src="./icons/desktop.png"
+                  alt="desktop"
+                  title="desktop compatibility"
+                />
+                <img
+                  src="./icons/mobile.png"
+                  alt="mobile"
+                  title="mobile compatibility"
+                  id="mobile-icon"
+                />
+              </div>
             </div>
             <p>
               A fully dynamic and responsive website. The client is written in
@@ -65,17 +69,19 @@ export default function Page() {
           <a className="project" href="/browserrendermadeeasy">
             <div className="project-header">
               <h3>Browser Render Made Easy</h3>
-              <img
-                src="./icons/desktop.png"
-                alt="desktop"
-                title="desktop compatibility"
-              />
-              <img
-                src="./icons/mobile.png"
-                alt="mobile"
-                title="mobile compatibility"
-                id="mobile-icon"
-              />
+              <div className="project-header-icons-container">
+                <img
+                  src="./icons/desktop.png"
+                  alt="desktop"
+                  title="desktop compatibility"
+                />
+                <img
+                  src="./icons/mobile.png"
+                  alt="mobile"
+                  title="mobile compatibility"
+                  id="mobile-icon"
+                />
+              </div>
             </div>
             <p>
               Explaining the complex magic behind every web page - an

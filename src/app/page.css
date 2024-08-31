@@ -96,6 +96,11 @@ body {
   margin-right: 0.3rem;
 }
 
+.project-header-icons-container {
+  display: flex;
+  align-items: center;
+}
+
 .project-header img {
   /* aspect-ratio: 1 1; */
   width: 1.5rem;
@@ -130,14 +135,15 @@ footer a {
   }
 
   #root {
-    padding: 2rem 0;
   }
 
   /* .home-page-container {
     padding-bottom: 4rem;
-  } */
+    } */
 
   .home-page-container main {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     align-items: baseline;
     flex-direction: column;
   }
@@ -156,6 +162,10 @@ footer a {
 
   #projects a:hover {
     background-color: unset;
+  }
+
+  .project-header {
+    justify-content: space-between;
   }
 
   #projects a p {
