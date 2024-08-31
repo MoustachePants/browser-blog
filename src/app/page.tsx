@@ -1,5 +1,5 @@
 import "./page.css";
-import Ropes from "../components/style/Ropes";
+import Ropes from "../../archive/Ropes";
 
 export default function Page() {
   return (

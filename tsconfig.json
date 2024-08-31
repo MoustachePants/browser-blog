@@ -18,6 +18,11 @@
     "incremental": true,
     "plugins": [{ "name": "next" }]
   },
-  "include": ["./src", "./dist/types/**/*.ts", "./next-env.d.ts"],
+  "include": [
+    "./src",
+    "./dist/types/**/*.ts",
+    "./next-env.d.ts",
+    "archive/Ropes"
+  ],
   "exclude": ["./node_modules"]
 }
