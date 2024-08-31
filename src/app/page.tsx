@@ -3,7 +3,6 @@ import "./page.css";
 export default function Page() {
   return (
     <div className="home-page-container">
-      {/* <Ropes /> */}
       <main>
         <section id="about">
           <h1>Welcome!</h1>
