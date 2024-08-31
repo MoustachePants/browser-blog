@@ -28,7 +28,7 @@ export default function Page() {
         </section>
         <section id="projects">
           <h2>Recent Projects</h2>
-          <a className="project">
+          <a className="project" href="https://birds-simulator.netlify.app/">
             <div className="project-header">
               <h3>Bird's Flight Simulator</h3>
               <img
