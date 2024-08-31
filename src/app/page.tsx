@@ -85,7 +85,10 @@ export default function Page() {
         </section>
       </main>
       <footer>
-        <p>&copy; 2024 Elad Laor. All rights reserved.</p>
+        <p>
+          &copy; 2024 Elad Laor. All rights reserved. icons by{" "}
+          <a href="https://icons8.com/">icons8</a>
+        </p>
       </footer>
     </div>
   );
