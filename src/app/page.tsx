@@ -31,21 +31,54 @@ export default function Page() {
         <section id="projects">
           <h2>Recent Projects</h2>
           <a className="project">
-            <h3>Bird's Flight Simulator</h3>
+            <div className="project-header">
+              <h3>Bird's Flight Simulator</h3>
+              <img
+                src="./icons/desktop.png"
+                alt="desktop"
+                title="desktop compatibility"
+              />
+            </div>
             <p>
               Every bird has its own fligt control system, pilot it above
               Israel's sky. Make sure to try the "Bird's Eye View"!
             </p>
           </a>
-          <a className="project">
-            <h3>Israel Fountains Library</h3>
+          <a className="project" href="https://thesprings.netlify.app/">
+            <div className="project-header">
+              <h3>Israel's Natural Springs Library</h3>
+              <img
+                src="./icons/desktop.png"
+                alt="desktop"
+                title="desktop compatibility"
+              />
+              <img
+                src="./icons/mobile.png"
+                alt="mobile"
+                title="mobile compatibility"
+                id="mobile-icon"
+              />
+            </div>
             <p>
               A fully dynamic and responsive website. The client is written in
               plain, vanilla JavaScript. No frameworks.
             </p>
           </a>
           <a className="project" href="/browserrendermadeeasy">
-            <h3>Browser Render Made Easy</h3>
+            <div className="project-header">
+              <h3>Browser Render Made Easy</h3>
+              <img
+                src="./icons/desktop.png"
+                alt="desktop"
+                title="desktop compatibility"
+              />
+              <img
+                src="./icons/mobile.png"
+                alt="mobile"
+                title="mobile compatibility"
+                id="mobile-icon"
+              />
+            </div>
             <p>
               Explaining the complex magic behind every web page - an
               interactive blog post.

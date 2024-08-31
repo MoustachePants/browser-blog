@@ -2,77 +2,119 @@
 import "./Ropes.css";
 import { useRef, useState, useEffect } from "react";
 
-const generateRandomPath = (width: number, height: number): string => {
-  const segments = 10;
-  let path = `M0,${height / 2}`;
-  let x = 0;
-  let y = height / 2;
+function generateSmoothPathWithLoops(width, height, minPoints, maxPoints) {
+  // Ensure we have at least 4 points to accommodate loops
+  const numPoints = Math.max(
+    4,
+    Math.floor(Math.random() * (maxPoints - minPoints + 1)) + minPoints
+  );
 
-  for (let i = 0; i < segments; i++) {
-    x += (Math.random() * width) / segments;
-    y += ((Math.random() - 0.5) * height) / 4;
-    path += ` Q${x},${y} ${x + (Math.random() * width) / segments},${
-      y + ((Math.random() - 0.5) * height) / 4
-    }`;
+  // Generate random points
+  const points = [];
+  for (let i = 0; i < numPoints; i++) {
+    points.push({
+      x: (i / (numPoints - 1)) * width,
+      y: Math.random() * height,
+    });
   }
 
-  path += ` L${width},${height / 2}`;
-  return path;
-};
+  // Function to generate a smooth curve between two points
+  function smoothCurve(p1, p2) {
+    const controlPoint1 = {
+      x: p1.x + (p2.x - p1.x) / 3,
+      y: p1.y + (Math.random() - 0.5) * height * 0.5,
+    };
+    const controlPoint2 = {
+      x: p1.x + (2 * (p2.x - p1.x)) / 3,
+      y: p2.y + (Math.random() - 0.5) * height * 0.5,
+    };
+    return `C ${controlPoint1.x},${controlPoint1.y} ${controlPoint2.x},${controlPoint2.y} ${p2.x},${p2.y}`;
+  }
 
-const Ropes = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [dimensions, setDimensions] = useState<{
-    width: number;
-    height: number;
-  }>({ width: 400, height: 100 });
+  // Function to generate a loop
+  function generateLoop(startPoint, endPoint) {
+    const midX = (startPoint.x + endPoint.x) / 2;
+    const peakY = Math.random() * height;
+    const loopDirection = Math.random() < 0.5 ? 1 : -1; // 1 for clockwise, -1 for counterclockwise
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (containerRef.current) {
-        setDimensions({
-          width: containerRef.current.clientWidth,
-          height: containerRef.current.clientHeight,
-        });
-      }
+    const controlPoint1 = {
+      x: midX - loopDirection * (endPoint.x - startPoint.x) * 0.2,
+      y: peakY,
+    };
+    const controlPoint2 = {
+      x: midX + loopDirection * (endPoint.x - startPoint.x) * 0.2,
+      y: peakY,
     };
 
-    // Initial size update
-    handleResize();
+    return `C ${controlPoint1.x},${controlPoint1.y} ${controlPoint2.x},${controlPoint2.y} ${endPoint.x},${endPoint.y}`;
+  }
 
-    // Update size on window resize
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // Generate the path
+  let pathData = `M ${points[0].x},${points[0].y}`;
 
-  const numRails = 5;
-  const rails = Array.from({ length: numRails }).map((_, i) => {
-    const xOffset = Math.random() * (dimensions.width - 100);
-    const yOffset = Math.random() * (dimensions.height - 20);
-    const transform = `translate(${xOffset}, ${yOffset}) rotate(${
-      Math.random() * 360
-    }, ${dimensions.width / 2}, ${dimensions.height / 2})`;
+  const numLoops = Math.floor(Math.random() * 4); // 0-3 loops
+  const loopPositions = new Set();
 
-    return (
-      <path
-        key={i}
-        d={generateRandomPath(dimensions.width, dimensions.height)}
-        transform={transform}
-        fill="none"
-        stroke="#333"
-        strokeWidth="4"
-      />
-    );
-  });
+  // Randomly select positions for loops
+  while (loopPositions.size < numLoops) {
+    loopPositions.add(Math.floor(Math.random() * (points.length - 1)) + 1);
+  }
 
+  for (let i = 1; i < points.length; i++) {
+    if (loopPositions.has(i)) {
+      // Insert additional points for the loop
+      const loopStartX =
+        points[i - 1].x + (points[i].x - points[i - 1].x) * 0.25;
+      const loopEndX = points[i - 1].x + (points[i].x - points[i - 1].x) * 0.75;
+      const loopStartY =
+        points[i - 1].y + (points[i].y - points[i - 1].y) * 0.25;
+      const loopEndY = points[i - 1].y + (points[i].y - points[i - 1].y) * 0.75;
+
+      pathData +=
+        " " + smoothCurve(points[i - 1], { x: loopStartX, y: loopStartY });
+      pathData +=
+        " " +
+        generateLoop(
+          { x: loopStartX, y: loopStartY },
+          { x: loopEndX, y: loopEndY }
+        );
+      pathData += " " + smoothCurve({ x: loopEndX, y: loopEndY }, points[i]);
+    } else {
+      pathData += " " + smoothCurve(points[i - 1], points[i]);
+    }
+  }
+
+  return pathData;
+}
+
+const Ropes = () => {
   return (
-    <div ref={containerRef} className="rails-container">
-      <svg
-        width="100%"
-        height="100%"
-        viewBox={`0 0 ${dimensions.width} ${dimensions.height}`}
-      >
-        {rails}
+    <div className="rails-container">
+      <svg xmlns="http://www.w3.org/2000/svg" stroke="red" fill="transparent">
+        <path
+          d={generateSmoothPathWithLoops(
+            window.innerWidth,
+            window.innerHeight / 5,
+            10,
+            20
+          )}
+        />
+        <path
+          d={generateSmoothPathWithLoops(
+            window.innerWidth,
+            window.innerHeight / 5,
+            10,
+            20
+          )}
+        />
+        <path
+          d={generateSmoothPathWithLoops(
+            window.innerWidth,
+            window.innerHeight / 5,
+            10,
+            20
+          )}
+        />
       </svg>
     </div>
   );

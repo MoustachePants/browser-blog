@@ -17,11 +17,12 @@ body {
 
 .home-page-container {
   height: 100%;
-  background-color: white;
+  background-color: rgb(255, 247, 230);
 }
 
 .home-page-container main {
   height: 100%;
+  max-width: 1200px;
   padding: 0 7%;
   margin: auto;
   display: flex;
@@ -85,6 +86,27 @@ body {
   border-radius: 5px;
 }
 
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.project-header h3 {
+  margin-right: 0.3rem;
+}
+
+.project-header img {
+  /* aspect-ratio: 1 1; */
+  width: 1.5rem;
+  opacity: 0.7;
+}
+
+#mobile-icon {
+  width: 1.2rem;
+  height: 1.3rem;
+}
+
 #projects a p {
   color: black;
 }
@@ -107,9 +129,9 @@ footer {
     padding: 2rem 0;
   }
 
-  .home-page-container {
-    /* padding-bottom: 4rem; */
-  }
+  /* .home-page-container {
+    padding-bottom: 4rem;
+  } */
 
   .home-page-container main {
     align-items: baseline;
