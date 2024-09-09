@@ -40,7 +40,7 @@ export default function Page() {
               </div>
             </div>
             <p>
-              Every bird has its own fligt control system, pilot it above
+              Every bird has its own flight control system. Pilot it above
               Israel's sky online. Make sure to try the "Bird's Eye View"!
             </p>
           </a>
