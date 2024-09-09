@@ -49,6 +49,12 @@ body {
 .links a img {
   aspect-ratio: 1 1;
   width: 2rem;
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+.links a img:hover {
+  opacity: unset;
 }
 
 #about p {
@@ -133,13 +139,6 @@ footer a {
   html {
     height: unset;
   }
-
-  #root {
-  }
-
-  /* .home-page-container {
-    padding-bottom: 4rem;
-    } */
 
   .home-page-container main {
     padding-top: 2rem;
